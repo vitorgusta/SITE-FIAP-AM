@@ -1,0 +1,41 @@
+Tabela de noticias:
+-Titulo	     not null
+-descrição   not null
+-assunto     null 
+-imagem      nullable 
+-data noticia defa ult sysdate 
+
+tabela cliente:
+-Nome completo 
+-endereco 
+-email 
+-data nascimento
+-usuario 
+-senha
+
+tabela contato:
+-nome 
+-email
+-data mensagem
+-mensagem
+
+tabela de usuario:
+-usuario
+-senha 
+-nome
+
+
+pkg_noticias:
+-prc_insere
+-prc_atualiza
+-prc_deleta
+
+pkg_cliente:
+-prc_insere
+
+pkg_contato:
+-prc_insere
+
+pkg_adm:
+-prc_insere_adm
+-fnc_faz_login return boolean 
