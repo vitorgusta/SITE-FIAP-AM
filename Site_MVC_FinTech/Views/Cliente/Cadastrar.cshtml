@@ -1,0 +1,39 @@
+﻿@model Site_MVC_FinTech.Models.Cliente
+
+@{
+    ViewBag.Title = "Cadastrar";
+}
+
+<h2>Cadastrar</h2>
+
+@using (Html.BeginForm())
+{
+    <table class="table">
+        <tr>
+            <td>@Html.LabelFor(model => model.IDCliente)</td>
+            <td>@Html.TextBoxFor(model => model.IDCliente, "")</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.nomeCliente)</td>
+            <td>@Html.TextBoxFor(model => model.nomeCliente, "")</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.enderecoCliente)</td>
+            <td>@Html.TextBoxFor(model => model.enderecoCliente, "")</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.emailCliente)</td>
+            <td>@Html.TextBoxFor(model => model.emailCliente, "")</td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.dtNascCLiente)</td>
+            <td>@Html.TextBoxFor(model => model.dtNascCLiente, "")</td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:right"><input type="submit" value="Cadastrar" /></td>
+        </tr>
+    </table>
+
+    @Html.ActionLink("Voltar para Index", "Index")
+}
+
