@@ -9,11 +9,14 @@ namespace Site_MVC_FinTech.Models
     {
         private static Repositorio _repositorio;
 
-        private List<Cliente> cliente;
+        private List<Pessoa> pessoa;
+
+        private List<Noticia> noticia;
 
         private Repositorio()
         {
-            cliente = new List<Cliente>();
+            pessoa = new List<Pessoa>();
+            noticia = new List<Noticia>();
         }
 
         public static Repositorio Instance()
@@ -26,36 +29,66 @@ namespace Site_MVC_FinTech.Models
             return _repositorio;
         }
 
-        public void InserirClinete(Cliente cli)
+        public void InserirPessoa(Pessoa pess)
         {
-            cliente.Add(cli);
+            pessoa.Add(pess);
+        }
+        public void InserirNoticia(Noticia not)
+        {
+            noticia.Add(not);
         }
 
-        public IEnumerable<Cliente> ListarClientes()
+        public IEnumerable<Pessoa> ListarPessoas()
         {
-            return cliente;
+            return pessoa;
+        }
+        public IEnumerable<Noticia> ListarNoticias()
+        {
+            return noticia;
         }
 
-        public Cliente ListarCliente(int idcliente)
+        public Pessoa ListarPessoa(int idpessoa)
         {
-            return cliente.Where(f => f.IDCliente == idcliente).First();
+            return pessoa.Where(f => f.IDPessoa == idpessoa).First();
+        }
+        public Noticia ListarNoticia(int idnoticia)
+        {
+            return noticia.Where(f => f.IDNoticia == idnoticia).First();
         }
 
-        public void ExcluirCliente(int idcliente)
+        public void ExcluirPessoa(int idpessoa)
         {
-            cliente.Remove(ListarCliente(idcliente));
+            pessoa.Remove(ListarPessoa(idpessoa));
+        }
+        public void ExcluirNoticia(int idnoticia)
+        {
+            noticia.Remove(ListarNoticia(idnoticia));
         }
 
-        public void AlterarCliente(Cliente cli)
+        public void AlterarPessoa(Pessoa pess)
         {
-            cliente.Where(f => f.IDCliente == cli.IDCliente)
+            pessoa.Where(f => f.IDPessoa == pess.IDPessoa)
                    .ToList()
                    .ForEach(s =>
                    {
-                       s.nomeCliente = cli.nomeCliente;
-                       s.enderecoCliente = cli.enderecoCliente;
-                       s.emailCliente = cli.emailCliente;
-                       s.dtNascCLiente = cli.dtNascCLiente;
+                       s.NomeCompleto = pess.NomeCompleto;
+                       s.Endereco = pess.Endereco;
+                       s.Email = pess.Email;
+                       s.DataNascimento = pess.DataNascimento;
+                       s.Usuario = pess.Usuario;
+                       s.Senha = pess.Senha;
+                   });
+        }
+        public void AlterarNoticia(Noticia not)
+        {
+            noticia.Where(f => f.IDNoticia == not.IDNoticia)
+                   .ToList()
+                   .ForEach(s =>
+                   {
+                       s.Titulo = not.Titulo;
+                       s.Materia = not.Materia;
+                       s.Imagem = not.Imagem;
+                       s.DataMateria = not.DataMateria;
                    });
         }
     }

@@ -386,7 +386,7 @@ hr {
   margin-top: 20px;
   margin-bottom: 20px;
   border: 0;
-  border-top: 10px solid #7dc726;
+  border-top: 10px solid #37b73d;
 }
 
 .sr-only {
@@ -4501,8 +4501,8 @@ textarea.input-group-sm > .input-group-btn > .btn {
 }
 
 .navbar-inverse {
-  background-color: #428bca;
-  border-color: #428bca;
+  background-color: #2196F3;
+  border-color: #2196F3;
 }
 
 .navbar-inverse .navbar-brand {
