@@ -7,67 +7,103 @@ namespace Site_MVC_FinTech.Models
 {
     public class Repositorio
     {
-        private static Repositorio _repositorio;
-
-        private List<Pessoa> pessoa;
-
-        private List<Noticia> noticia;
-
-        private Repositorio()
+        /*INSERIR   */
+        public static void InserirPessoa(Pessoa pess)
         {
-            pessoa = new List<Pessoa>();
-            noticia = new List<Noticia>();
-        }
-
-        public static Repositorio Instance()
-        {
-            if (_repositorio == null)
+            using (var ctx = new ClassContext())
             {
-                _repositorio = new Repositorio();
+                ctx.Pessoa.Add(pess);
+                ctx.SaveChanges();
+
             }
-
-            return _repositorio;
+        }
+        public static void InserirNoticia(Noticia not)
+        {
+            using (var ctx = new ClassContext())
+            {
+                ctx.Noticia.Add(not);
+                ctx.SaveChanges();
+            }
+        }
+        public static void InserirContato(Contato cont)
+        {
+            using (var ctx = new ClassContext())
+            {
+                ctx.Contato.Add(cont);
+                ctx.SaveChanges();
+            }
         }
 
-        public void InserirPessoa(Pessoa pess)
+        /*LISTAR TODOS   */
+        public static IEnumerable<Pessoa> ListarPessoas()
         {
-            pessoa.Add(pess);
+            var ctx = new ClassContext();
+
+            return ctx.Pessoa;
         }
-        public void InserirNoticia(Noticia not)
+        public static IEnumerable<Noticia> ListarNoticias()
         {
-            noticia.Add(not);
+            var ctx = new ClassContext();
+
+            return ctx.Noticia;
+        }
+        public static IEnumerable<Contato> ListarContatos()
+        {
+            var ctx = new ClassContext();
+
+            return ctx.Contato;
         }
 
-        public IEnumerable<Pessoa> ListarPessoas()
+        /*LISTAR   */
+        public static Pessoa ListarPessoa(int idpessoa)
         {
-            return pessoa;
+            var ctx = new ClassContext();
+
+            return ctx.Pessoa.Where(f => f.IDPessoa == idpessoa).First();
         }
-        public IEnumerable<Noticia> ListarNoticias()
+        public static Noticia ListarNoticia(int idnoticia)
         {
-            return noticia;
+            var ctx = new ClassContext();
+
+            return ctx.Noticia.Where(f => f.IDNoticia == idnoticia).First();
+        }
+        public static Contato ListarContato(int idcontato)
+        {
+            var ctx = new ClassContext();
+
+            return ctx.Contato.Where(f => f.IDContato == idcontato).First();
         }
 
-        public Pessoa ListarPessoa(int idpessoa)
+        /*EXCLUIR   */
+        public static void ExcluirPessoa(int idpessoa)
         {
-            return pessoa.Where(f => f.IDPessoa == idpessoa).First();
+            using (var ctx = new ClassContext())
+            {
+                ctx.Pessoa.Remove(ListarPessoa(idpessoa));
+                ctx.SaveChanges();
+            }
         }
-        public Noticia ListarNoticia(int idnoticia)
+        public static void ExcluirNoticia(int id)
         {
-            return noticia.Where(f => f.IDNoticia == idnoticia).First();
+            var ctx = new ClassContext();
+
+            ctx.Noticia.Remove(ListarNoticia(id));
+            ctx.SaveChanges();
+        }
+        public static void ExcluirContato(int id)
+        {
+            var ctx = new ClassContext();
+
+            ctx.Contato.Remove(ListarContato(id));
+            ctx.SaveChanges();
         }
 
-        public void ExcluirPessoa(int idpessoa)
+        /*ALTERAR   */
+        public static void AlterarPessoa(Pessoa pess)
         {
-            pessoa.Remove(ListarPessoa(idpessoa));
-        }
-        public void ExcluirNoticia(int idnoticia)
-        {
-            noticia.Remove(ListarNoticia(idnoticia));
-        }
+            var ctx = new ClassContext();
 
-        public void AlterarPessoa(Pessoa pess)
-        {
-            pessoa.Where(f => f.IDPessoa == pess.IDPessoa)
+            ctx.Pessoa.Where(f => f.IDPessoa == pess.IDPessoa)
                    .ToList()
                    .ForEach(s =>
                    {
@@ -78,10 +114,14 @@ namespace Site_MVC_FinTech.Models
                        s.Usuario = pess.Usuario;
                        s.Senha = pess.Senha;
                    });
+
+            ctx.SaveChanges();
         }
-        public void AlterarNoticia(Noticia not)
+        public static void AlterarNoticia(Noticia not)
         {
-            noticia.Where(f => f.IDNoticia == not.IDNoticia)
+            var ctx = new ClassContext();
+
+            ctx.Noticia.Where(f => f.IDNoticia == not.IDNoticia)
                    .ToList()
                    .ForEach(s =>
                    {
@@ -89,6 +129,20 @@ namespace Site_MVC_FinTech.Models
                        s.Materia = not.Materia;
                        s.Imagem = not.Imagem;
                        s.DataMateria = not.DataMateria;
+                   });
+        }
+        public static void AlterarContato(Contato cont)
+        {
+            var ctx = new ClassContext();
+
+            ctx.Contato.Where(f => f.IDContato == cont.IDContato)
+                   .ToList()
+                   .ForEach(s =>
+                   {
+                       s.NomeContato = cont.NomeContato;
+                       s.EmailContato = cont.EmailContato;
+                       s.Mensagem = cont.Mensagem;
+                       s.DataMensagem = cont.DataMensagem;
                    });
         }
     }

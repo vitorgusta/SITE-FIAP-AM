@@ -14,7 +14,7 @@ namespace Site_MVC_FinTech.Models
 
         [DisplayName("Nome Completo")]
         [StringLength(200, ErrorMessage = "O campo Nome permite no máximo 200 caracteres!")]
-        [Required(ErrorMessage = "Digite o Nome")]
+        [Required(ErrorMessage = "O campo Nome é obrigatório ")]
         public string NomeCompleto { get; set; }
 
         [DisplayName("Endereço")]
@@ -22,13 +22,13 @@ namespace Site_MVC_FinTech.Models
 
         [DisplayName("E-mail")]
         [StringLength(200)]
-        [Required(ErrorMessage = "Digite o Email")]
+        [Required(ErrorMessage = "O campo Email é obrigatório ")]
         [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "Email inválido.")]
         public string Email { get; set; }
 
         [DisplayName("Data Nascimento")]
         [DataType(DataType.Date)]
-        [Required(ErrorMessage = "Digite a Data de Nascimento")]
+        [Required(ErrorMessage = "O campo Data de Nascimento é obrigatório ")]
         public DateTime DataNascimento { get; set; }
 
         [DisplayName("Usuário")]

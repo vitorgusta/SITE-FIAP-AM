@@ -12,25 +12,26 @@ namespace Site_MVC_FinTech.Models
         [Key]
         public int IDNoticia { get; set; }
 
-        [DisplayName("Titulosdfsdfsdfsdfsdf")]
+        [DisplayName("Titulo")]
         [StringLength(50, ErrorMessage = "O campo Nome permite no máximo 50 caracteres!")]
-        [Required(ErrorMessage = "Digite o Titulo")]
+        [Required(ErrorMessage = "O campo Titulo é obrigatório")]
         public string Titulo { get; set; }
 
         [DisplayName("Matéria")]
         [StringLength(2000, ErrorMessage = "O campo Nome permite no máximo 2000 caracteres!")]
-        [Required(ErrorMessage = "Digite a Matéria")]
+        [Required(ErrorMessage = "O campo Matéria é obrigatório ")]
         public string Materia { get; set; }
 
         [DisplayName("Imagem")]
+        [Required]
         public string Imagem { get; set; }
 
         [DisplayName("Data Matéria")]
         [DataType(DataType.Date)]
-        [Required(ErrorMessage = "Digite a Data da Matéria")]
+        [Required(ErrorMessage = "O campo Data da Matéria é obrigatório")]
         public DateTime DataMateria { get; set; }
 
-        public bool Sta_Ativo { get; set; }
+        //public bool Sta_Ativo { get; set; }
 
         //public <Categoria> Categorias {get; set;}
 

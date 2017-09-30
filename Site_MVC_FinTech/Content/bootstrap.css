@@ -181,8 +181,13 @@ button,
 html input[type="button"],
 input[type="reset"],
 input[type="submit"] {
-  cursor: pointer;
-  -webkit-appearance: button;
+  background-color: #37b73d;
+	width: 120px;
+	border: 1px solid #008d3a;
+	border-radius: 5px;
+	padding: 5px;
+	font-weight: bold;
+	color: #F5F5F5
 }
 
 button[disabled],
@@ -314,7 +319,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 14px;
   line-height: 1.428571429;
-  color: #333333;
+  color: #383838;
   background-color: #ffffff;
 }
 
@@ -1424,7 +1429,7 @@ th {
 .table thead > tr > td,
 .table tbody > tr > td,
 .table tfoot > tr > td {
-  padding: 8px;
+  padding: 5px;
   line-height: 1.428571429;
   vertical-align: top;
   border-top: 1px solid #dddddd;
@@ -4934,7 +4939,7 @@ a.list-group-item.active > .badge,
   font-weight: 200;
   line-height: 2.1428571435;
   color: inherit;
-  background-color: #eeeeee;
+  background-color: #e0e0e0;
 }
 
 .jumbotron h1 {

@@ -24,28 +24,29 @@ namespace Site_MVC_FinTech.Controllers
         [HttpPost]
         public ActionResult CadastrarPessoa(Pessoa p)
         {
-            Repositorio.Instance().InserirPessoa(p);
+            Repositorio.InserirPessoa(p);
 
             return RedirectToAction("ListarPessoa");
         }
 
         public ActionResult ListarPessoa()
         {
-            var pessoa = Repositorio.Instance().ListarPessoas();
+            var pessoa = Repositorio.ListarPessoas();
 
             return View(pessoa);
         }
 
         public ActionResult ExcluirPessoa(int id)
         {
-            Repositorio.Instance().ExcluirPessoa(id);
+            Repositorio.ExcluirPessoa(id);
 
             return RedirectToAction("ListarPessoa");
         }
 
+        [HttpGet]
         public ActionResult EditarPessoa(int id)
         {
-            var pessoa = Repositorio.Instance().ListarPessoa(id);
+            var pessoa = Repositorio.ListarPessoa(id);
 
             return View("CadastrarPessoa", pessoa);
         }
@@ -53,7 +54,7 @@ namespace Site_MVC_FinTech.Controllers
         [HttpPost]
         public ActionResult EditarPessoa(Pessoa p)
         {
-            Repositorio.Instance().AlterarPessoa(p);
+            Repositorio.AlterarPessoa(p);
 
             return RedirectToAction("ListarPessoa");
         }

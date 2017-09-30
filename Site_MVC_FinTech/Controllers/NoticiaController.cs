@@ -10,7 +10,7 @@ namespace Site_MVC_FinTech.Controllers
     public class NoticiaController : Controller
     {
         // GET: Noticia
-        public ActionResult IndexListarNoticia()
+        public ActionResult IndexNoticia()
         {
             return View();
         }
@@ -24,38 +24,38 @@ namespace Site_MVC_FinTech.Controllers
         [HttpPost]
         public ActionResult CadastrarNoticia(Noticia n)
         {
-            Repositorio.Instance().InserirNoticia(n);
+            Repositorio.InserirNoticia(n);
 
-            return RedirectToAction("IndexListarNoticia");
+            return RedirectToAction("ListarNoticia");
         }
 
         public ActionResult ListarNoticia()
         {
-            var pessoa = Repositorio.Instance().ListarNoticias();
+            var noticia = Repositorio.ListarNoticias();
 
-            return View(pessoa);
+            return View(noticia);
         }
 
-        public ActionResult Excluir(int id)
+        public ActionResult ExcluirNoticia(int id)
         {
-            Repositorio.Instance().ExcluirPessoa(id);
+            Repositorio.ExcluirNoticia(id);
 
-            return RedirectToAction("IndexListarNoticia");
+            return RedirectToAction("ListarNoticia");
         }
 
-        public ActionResult Editar(int id)
+        public ActionResult EditarNoticia(int id)
         {
-            var pessoa = Repositorio.Instance().ListarPessoa(id);
+            var noticia = Repositorio.ListarNoticia(id);
 
-            return View("CadastrarNoticia", pessoa);
+            return View("CadastrarNoticia", noticia);
         }
 
         [HttpPost]
-        public ActionResult Editar(Pessoa p)
+        public ActionResult EditarNoticia(Noticia n)
         {
-            Repositorio.Instance().AlterarPessoa(p);
+            Repositorio.AlterarNoticia(n);
 
-            return RedirectToAction("IndexListarNoticia");
+            return RedirectToAction("ListarNoticia");
         }
     }
 }

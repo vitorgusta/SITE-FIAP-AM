@@ -8,30 +8,47 @@
 
 @using (Html.BeginForm())
 {
-    <table class="table">
+    <table class="form-group">
+        @*<tr>
+                <td>@Html.LabelFor(model => model.IDNoticia)</td>
+                <td>
+                @Html.TextBoxFor(model => model.IDNoticia)</td>
+            </tr>*@
         <tr>
-            <td>@Html.LabelFor(model => model.IDNoticia)</td>
-            <td>@Html.TextBoxFor(model => model.IDNoticia, "")</td>
+            <td>@Html.LabelFor(model => model.Titulo, new { @class = "col-md-2 control-label" })</td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Titulo)
+                @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control" })
+            </td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(model => model.Titulo)</td>
-            <td>@Html.TextBoxFor(model => model.Titulo, "")</td>
+            <td>@Html.LabelFor(model => model.Materia, new { @class = "col-md-2 control-label" })</td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Titulo)
+                @Html.TextBoxFor(model => model.Materia, new { @class = "form-control" })
+            </td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(model => model.Materia)</td>
-            <td>@Html.TextBoxFor(model => model.Materia, "")</td>
+            <td>@Html.LabelFor(model => model.Imagem, new { @class = "col-md-2 control-label" })</td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Titulo)
+                @Html.TextBoxFor(model => model.Imagem, new { @class = "form-control" })
+            </td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(model => model.Imagem)</td>
-            <td>@Html.TextBoxFor(model => model.Imagem, "")</td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.DataMateria)</td>
-            <td>@Html.TextBoxFor(model => model.DataMateria, "")</td>
+            <td>@Html.LabelFor(model => model.DataMateria, new { @class = "col-md-2 control-label" })</td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Titulo)
+                @Html.TextBoxFor(model => model.DataMateria, new { @class = "form-control" })
+            </td>
         <tr>
             <td colspan="2" style="text-align:right"><input type="submit" value="Cadastrar" /></td>
         </tr>
     </table>
 
-    @Html.ActionLink("Voltar para Noticias", "IndexListarNoticia")
+    @Html.ActionLink("Voltar para Noticias", "IndexNoticia")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
 }
