@@ -8,7 +8,7 @@ namespace Site_MVC_FinTech.Models
 {
     public class ClassContext : DbContext
     {
-        public ClassContext() : base("Teste") { }
+        public ClassContext() : base("Database_Fintech") { }
 
         public DbSet<Noticia> Noticia { get; set; }
         public DbSet<Pessoa> Pessoa { get; set; }

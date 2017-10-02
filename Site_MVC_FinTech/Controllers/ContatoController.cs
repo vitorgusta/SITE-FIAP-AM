@@ -46,7 +46,7 @@ namespace Site_MVC_FinTech.Controllers
         {
             var contato = Repositorio.ListarContato(id);
 
-            return View("CadastrarPessoa", contato);
+            return View("CadastrarContato", contato);
         }
 
         [HttpPost]

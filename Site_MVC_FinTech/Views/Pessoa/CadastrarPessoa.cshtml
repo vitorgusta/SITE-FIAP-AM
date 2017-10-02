@@ -10,10 +10,7 @@
 @using (Html.BeginForm())
 {
     <table class="form-group">
-        @*<tr>
-            <td>@Html.LabelFor(model => model.IDPessoa)</td>
-            <td>@Html.TextBoxFor(model => model.IDPessoa, "")</td>
-        </tr>*@
+        @Html.HiddenFor(model => model.IDPessoa)
         <tr>
             <td>@Html.LabelFor(model => model.NomeCompleto, new { @class = "col-md-2 control-label" })</td>
             <td>
