@@ -224,8 +224,6 @@ C:\Users\logonrm\Documents\SITE-FIAP-AM\Site_MVC_FinTech\bin\roslyn\VBCSCompiler
 C:\Users\logonrm\Documents\SITE-FIAP-AM\Site_MVC_FinTech\bin\Site_MVC_FinTech.dll.config
 C:\Users\logonrm\Documents\SITE-FIAP-AM\Site_MVC_FinTech\bin\Site_MVC_FinTech.dll
 C:\Users\logonrm\Documents\SITE-FIAP-AM\Site_MVC_FinTech\bin\Site_MVC_FinTech.pdb
-C:\Users\logonrm\Documents\SITE-FIAP-AM\Site_MVC_FinTech\bin\AutoMapper.dll
-C:\Users\logonrm\Documents\SITE-FIAP-AM\Site_MVC_FinTech\bin\AutoMapper.xml
 C:\Users\logonrm\Documents\SITE-FIAP-AM\Site_MVC_FinTech\bin\Microsoft.AI.DependencyCollector.xml
 C:\Users\logonrm\Documents\SITE-FIAP-AM\Site_MVC_FinTech\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\logonrm\Documents\SITE-FIAP-AM\Site_MVC_FinTech\bin\Microsoft.AI.Web.xml
@@ -258,3 +256,5 @@ C:\Users\logonrm\Documents\SITE-FIAP-AM\Site_MVC_FinTech\bin\Microsoft.Owin.Secu
 C:\Users\logonrm\Documents\SITE-FIAP-AM\Site_MVC_FinTech\obj\Debug\Site_MVC_FinTech.csprojResolveAssemblyReference.cache
 C:\Users\logonrm\Documents\SITE-FIAP-AM\Site_MVC_FinTech\obj\Debug\Site_MVC_FinTech.dll
 C:\Users\logonrm\Documents\SITE-FIAP-AM\Site_MVC_FinTech\obj\Debug\Site_MVC_FinTech.pdb
+C:\Users\logonrm\Documents\SITE-FIAP-AM\Site_MVC_FinTech\bin\Oracle.ManagedDataAccess.dll
+C:\Users\logonrm\Documents\SITE-FIAP-AM\Site_MVC_FinTech\bin\Oracle.ManagedDataAccess.EntityFramework.dll

@@ -58,5 +58,22 @@ namespace Site_MVC_FinTech.Controllers
 
             return RedirectToAction("ListarPessoa");
         }
+
+        [HttpGet]
+        public ViewContext Login(string usuario, string senha)
+        {
+            Pessoa user = Repositorio.FindById(usuario, senha);
+            if(user.IDPessoa != null)
+            {
+                TempData["mensagem"] = "Usuario logado com sucesso!";
+                return Redirect("\arearestrita");
+            }
+            else
+            {
+                TempData["mensagem"] = "Usuario não encontrado!";
+            }
+
+            
+        }
     }
 }
