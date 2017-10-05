@@ -10,26 +10,26 @@ namespace Site_MVC_FinTech.Controllers
     public class PessoaController : Controller
     {
         // GET: Cliente
-        public ActionResult IndexPessoa()
+        public ActionResult Index()
         {
             return View();
         }
 
         [HttpGet]
-        public ActionResult CadastrarPessoa()
+        public ActionResult Cadastrar()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult CadastrarPessoa(Pessoa p)
+        public ActionResult Cadastrar(Pessoa p)
         {
             Repositorio.InserirPessoa(p);
 
-            return RedirectToAction("ListarPessoa");
+            return RedirectToAction("Listar");
         }
 
-        public ActionResult ListarPessoa()
+        public ActionResult Listar()
         {
             var pessoa = Repositorio.ListarPessoas();
 
@@ -40,7 +40,7 @@ namespace Site_MVC_FinTech.Controllers
         {
             Repositorio.ExcluirPessoa(id);
 
-            return RedirectToAction("ListarPessoa");
+            return RedirectToAction("Listar");
         }
 
         [HttpGet]
@@ -48,7 +48,7 @@ namespace Site_MVC_FinTech.Controllers
         {
             var pessoa = Repositorio.ListarPessoa(id);
 
-            return View("CadastrarPessoa", pessoa);
+            return View("Cadastrar", pessoa);
         }
 
         [HttpPost]
@@ -57,6 +57,24 @@ namespace Site_MVC_FinTech.Controllers
             Repositorio.AlterarPessoa(p);
 
             return RedirectToAction("ListarPessoa");
+        }
+
+        [HttpGet]
+        public ActionResult Login(string usuario, string senha)
+        {
+            Pessoa user = Repositorio.FindById(usuario, senha);
+            if (user.IDPessoa > 0)
+            {
+                TempData["mensagem"] = "Usuario logado com sucesso!";
+
+                return RedirectToAction("/AreaRestrita/Index");
+            }
+            else
+            {
+                TempData["mensagem"] = "Usuario não encontrado!";
+            }
+
+            return View();
         }
     }
 }

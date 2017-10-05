@@ -77,6 +77,18 @@ namespace Site_MVC_FinTech.Models
             }
         }
 
+        public static Pessoa FindById(string usuario, string senha)
+        {
+            using (var ctx = new ClassContext())
+            {
+                return ctx.Pessoa.FirstOrDefault(user =>
+                                                    user.Usuario.Equals(usuario, StringComparison.CurrentCultureIgnoreCase) &&
+                                                    user.Senha.Equals(senha, StringComparison.CurrentCultureIgnoreCase)
+                                                );
+            }
+
+        }
+
         /*EXCLUIR   */
         public static void ExcluirPessoa(int idpessoa)
         {

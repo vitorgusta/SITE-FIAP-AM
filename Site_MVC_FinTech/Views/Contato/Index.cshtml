@@ -1,0 +1,26 @@
+﻿@model Site_MVC_FinTech.Models.Contato
+
+@{
+    ViewBag.Title = "Contato";
+}
+
+<h2>Contato</h2>
+
+<p>Fale Conosco, @Html.ActionLink("envie sua mensagem", "Cadastrar")</p>
+
+<div class="textwidget">
+    <h3>Institucional</h3>
+    <p>
+        <img class="alignnone size-full wp-image-102" src="https://www.cdn.erasystems.com.br/wp-content/uploads/2017/06/contato.png" alt="contato" width="230" height="230" srcset="https://www.erasystems.com.br/wp-content/uploads/2017/06/contato.png 230w, https://www.erasystems.com.br/wp-content/uploads/2017/06/contato-150x150.png 150w" sizes="(max-width: 230px) 100vw, 230px"><br>
+        Telefone: (11) 3385-8010<br>
+        Fiap: 3SIS<br>
+        Av. Lins de Vanconcelos, 1222 - Aclimação
+    </p>
+</div>
+
+@Html.ActionLink("Voltar para Contato", "Index")
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
