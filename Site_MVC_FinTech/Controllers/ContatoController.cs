@@ -10,25 +10,25 @@ namespace Site_MVC_FinTech.Controllers
     public class ContatoController : Controller
     {
         // GET: Contato
-        public ActionResult IndexContato()
+        public ActionResult Index()
         {
             return View();
         }
         [HttpGet]
-        public ActionResult CadastrarContato()
+        public ActionResult Cadastrar()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult CadastrarContato(Contato c)
+        public ActionResult Cadastrar(Contato c)
         {
             Repositorio.InserirContato(c);
 
-            return RedirectToAction("ListarContato");
+            return RedirectToAction("Listar");
         }
 
-        public ActionResult ListarContato()
+        public ActionResult Listar()
         {
             var conntato = Repositorio.ListarContatos();
 
@@ -39,14 +39,14 @@ namespace Site_MVC_FinTech.Controllers
         {
             Repositorio.ExcluirContato(id);
 
-            return RedirectToAction("ListarContato");
+            return RedirectToAction("Listar");
         }
 
         public ActionResult EditarContato(int id)
         {
             var contato = Repositorio.ListarContato(id);
 
-            return View("CadastrarContato", contato);
+            return View("Cadastrar", contato);
         }
 
         [HttpPost]
@@ -54,7 +54,7 @@ namespace Site_MVC_FinTech.Controllers
         {
             Repositorio.AlterarContato(c);
 
-            return RedirectToAction("ListarContato");
+            return RedirectToAction("Listar");
         }
     }
 }

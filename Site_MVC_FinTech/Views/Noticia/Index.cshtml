@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Site_MVC_FinTech.Models.Noticia>
+
+@{
+    ViewBag.Title = "Noticia";
+}
+<h2>Desenvolvimento do nosso produto 'FinTech'.</h2>
+<br />
+<br />
+
+@foreach (var item in Model)
+{
+    <section class="teste">
+        <div class="noticiaimagem">
+            <img src="~/Imagens/imagemnoticia1.jpg">@Html.DisplayFor(model => item.Imagem)
+        </div>
+        <div class="noticiaLista">
+            @Html.HiddenFor(model => item.IDNoticia)
+            <h2>@Html.DisplayFor(model => item.Titulo)</h2>
+            <p><em>@Html.DisplayFor(model => item.Materia) &nbsp;</em></p>
+            <p>@Html.DisplayFor(model => item.DataMateria)</p>
+            <img src="~/Imagens/fiapicon.ico"> 
+        </div>
+    </section>
+}
+
+<a href="#top" id="wt-top" class="wt_top_btn"><img class="topo" src="~/Imagens/iconup.svg"></a>
+
+
