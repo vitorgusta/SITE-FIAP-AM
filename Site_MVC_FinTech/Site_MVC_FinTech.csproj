@@ -77,14 +77,6 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Oracle.ManagedDataAccess, Version=4.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
-      <HintPath>..\packages\Oracle.ManagedDataAccess.12.2.1100\lib\net40\Oracle.ManagedDataAccess.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="Oracle.ManagedDataAccess.EntityFramework, Version=6.122.1.0, Culture=neutral, PublicKeyToken=89b483f429c47342, processorArchitecture=MSIL">
-      <HintPath>..\packages\Oracle.ManagedDataAccess.EntityFramework.12.2.1100\lib\net45\Oracle.ManagedDataAccess.EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -234,10 +226,8 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-<<<<<<< HEAD
-    <Content Include="fonts\Imagens\pessoa.png" />
-    <Content Include="fonts\Imagens\teste.png" />
-=======
+    <!--<Content Include="fonts\Imagens\pessoa.png" />-->
+    <!--<Content Include="fonts\Imagens\teste.png" />-->
     <Content Include="Imagens\fiapicon.ico" />
     <Content Include="Imagens\home fundo.jpg" />
     <Content Include="Imagens\Home1.png" />
@@ -246,7 +236,6 @@
     <Content Include="Imagens\imagemnoticia1.jpg" />
     <Content Include="Imagens\pessoa.png" />
     <Content Include="Imagens\teste.png" />
->>>>>>> teste
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
     <Content Include="Scripts\bootstrap.js" />

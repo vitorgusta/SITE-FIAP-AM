@@ -79,22 +79,12 @@ namespace Site_MVC_FinTech.Models
 
         public static Pessoa FindById(string usuario, string senha)
         {
-<<<<<<< HEAD
-            using(var ctx = new ClassContext())
+
+           using(var ctx = new ClassContext())
             {
                 return ctx.Pessoa.FirstOrDefault(user => user.Usuario.Equals(usuario,StringComparison.CurrentCultureIgnoreCase) && user.Senha.Equals(senha, StringComparison.CurrentCultureIgnoreCase));
             }
-            
-=======
-            using (var ctx = new ClassContext())
-            {
-                return ctx.Pessoa.FirstOrDefault(user =>
-                                                    user.Usuario.Equals(usuario, StringComparison.CurrentCultureIgnoreCase) &&
-                                                    user.Senha.Equals(senha, StringComparison.CurrentCultureIgnoreCase)
-                                                );
-            }
-
->>>>>>> teste
+           
         }
 
         /*EXCLUIR   */

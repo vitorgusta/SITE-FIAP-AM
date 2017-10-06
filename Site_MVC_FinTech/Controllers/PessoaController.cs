@@ -60,15 +60,6 @@ namespace Site_MVC_FinTech.Controllers
         }
 
         [HttpGet]
-<<<<<<< HEAD
-        public ViewContext Login(string usuario, string senha)
-        {
-            Pessoa user = Repositorio.FindById(usuario, senha);
-            if(user.IDPessoa != null)
-            {
-                TempData["mensagem"] = "Usuario logado com sucesso!";
-                return Redirect("\arearestrita");
-=======
         public ActionResult Login(string usuario, string senha)
         {
             Pessoa user = Repositorio.FindById(usuario, senha);
@@ -77,18 +68,15 @@ namespace Site_MVC_FinTech.Controllers
                 TempData["mensagem"] = "Usuario logado com sucesso!";
 
                 return RedirectToAction("/AreaRestrita/Index");
->>>>>>> teste
+
             }
             else
             {
                 TempData["mensagem"] = "Usuario não encontrado!";
             }
 
-<<<<<<< HEAD
-            
-=======
             return View();
->>>>>>> teste
+
         }
     }
 }
