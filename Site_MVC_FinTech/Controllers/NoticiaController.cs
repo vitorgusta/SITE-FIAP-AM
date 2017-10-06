@@ -9,27 +9,31 @@ namespace Site_MVC_FinTech.Controllers
 {
     public class NoticiaController : Controller
     {
+        //[AllowAnonymous]
         // GET: Noticia
-        public ActionResult IndexNoticia()
+        public ActionResult Index()
         {
-            return View();
+            var noticia = Repositorio.ListarNoticias();
+
+            return View(noticia);
         }
 
         [HttpGet]
-        public ActionResult CadastrarNoticia()
+        public ActionResult Cadastrar()
         {
             return View();
         }
 
         [HttpPost]
-        public ActionResult CadastrarNoticia(Noticia n)
+        public ActionResult Cadastrar(Noticia n)
         {
             Repositorio.InserirNoticia(n);
 
-            return RedirectToAction("ListarNoticia");
+            return RedirectToAction("Listar");
         }
 
-        public ActionResult ListarNoticia()
+        //[Authorize]
+        public ActionResult Listar()
         {
             var noticia = Repositorio.ListarNoticias();
 
@@ -40,14 +44,14 @@ namespace Site_MVC_FinTech.Controllers
         {
             Repositorio.ExcluirNoticia(id);
 
-            return RedirectToAction("ListarNoticia");
+            return RedirectToAction("Listar");
         }
 
         public ActionResult EditarNoticia(int id)
         {
             var noticia = Repositorio.ListarNoticia(id);
 
-            return View("CadastrarNoticia", noticia);
+            return View("Cadastrar", noticia);
         }
 
         [HttpPost]
@@ -55,7 +59,7 @@ namespace Site_MVC_FinTech.Controllers
         {
             Repositorio.AlterarNoticia(n);
 
-            return RedirectToAction("ListarNoticia");
+            return RedirectToAction("Listar");
         }
     }
 }
