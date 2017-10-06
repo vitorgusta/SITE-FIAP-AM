@@ -1,0 +1,38 @@
+﻿@model Site_MVC_FinTech.Models.Categoria
+
+@{
+    ViewBag.Title = "CadastrarCategoria";
+}
+
+<h2>Cadastrar Categoria</h2>
+
+
+@using (Html.BeginForm())
+{
+    <table class="form-group">
+        @Html.HiddenFor(model => model.Id)
+        <tr>
+            <td>@Html.LabelFor(model => model.Descricao, new { @class = "col-md-2 control-label" })</td>
+            <td>
+                @Html.ValidationMessageFor(model => model.Descricao)
+                @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.LabelFor(model => model.StaAtivo, new { @class = "col-md-2 control-label" })</td>
+            <td>
+                @Html.ValidationMessageFor(model => model.StaAtivo)
+                @Html.TextBoxFor(model => model.StaAtivo, new { @class = "form-control" })
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:right"><input type="submit" value="Cadastrar" /></td>
+        </tr>
+    </table>
+
+    @Html.ActionLink("Voltar para Categoria", "IndexNoticia")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
