@@ -34,6 +34,15 @@ namespace Site_MVC_FinTech.Models
             }
         }
 
+        public static void InserirCategoria(Categoria cat)
+        {
+            using (var ctx = new ClassContext())
+            {
+                ctx.Categoria.Add(cat);
+                ctx.SaveChanges();
+            }
+        }
+
         /*LISTAR TODOS   */
         public static IEnumerable<Pessoa> ListarPessoas()
         {
@@ -52,6 +61,14 @@ namespace Site_MVC_FinTech.Models
             var ctx = new ClassContext();
 
             return ctx.Contato;
+        }
+
+
+        public static IEnumerable<Categoria> ListarCategorias()
+        {
+            var ctx = new ClassContext();
+
+            return ctx.Categoria;
         }
 
         /*LISTAR   */
@@ -87,6 +104,15 @@ namespace Site_MVC_FinTech.Models
            
         }
 
+        public static Categoria ListarCategoria(int IdCategoria)
+        {
+
+            using (var ctx = new ClassContext())
+            {
+                return ctx.Categoria.Where(f => f.IdCategoria == IdCategoria).First();
+            }
+
+        } 
         /*EXCLUIR   */
         public static void ExcluirPessoa(int idpessoa)
         {
@@ -115,6 +141,18 @@ namespace Site_MVC_FinTech.Models
                 Contato contato = ctx.Contato.Where(c => c.IDContato == idcontato).First();
 
                 ctx.Contato.Remove(contato);
+                ctx.SaveChanges();
+            }
+        }
+
+
+        public static void ExcluirCategorioa(int idCategoria)
+        {
+            using (var ctx = new ClassContext())
+            {
+                Categoria categoria = ctx.Categoria.Where(c => c.IdCategoria == idCategoria).First();
+
+                ctx.Categoria.Remove(categoria);
                 ctx.SaveChanges();
             }
         }
@@ -164,5 +202,20 @@ namespace Site_MVC_FinTech.Models
                 ctx.SaveChanges();
             }
         }
+
+        public static void AlterarCategoria(Categoria cat)
+        {
+            using (var ctx = new ClassContext())
+            {
+                Categoria categoria = ctx.Categoria.Where(c => c.IdCategoria == cat.IdCategoria).First();
+
+                categoria.Descricao = cat.Descricao;
+                categoria.StaAtivo = cat.StaAtivo;
+
+                ctx.SaveChanges();
+            }
+        }
+
+
     }
 }

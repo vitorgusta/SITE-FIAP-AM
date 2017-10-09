@@ -10,7 +10,7 @@ namespace Site_MVC_FinTech.Models
     public class Categoria
     {
         [Key]
-        public int Id { get; set; }
+        public int IdCategoria { get; set; }
 
         [DisplayName("Descrição")]
         [StringLength(50, ErrorMessage = "O campo Categoria permite no máximo 50 caracteres!")]
@@ -20,6 +20,6 @@ namespace Site_MVC_FinTech.Models
 
         [DisplayName("Status")]
         [Required(ErrorMessage = "O campo Status é obrigatório")]
-        public String StaAtivo { get; set; } 
+        public bool StaAtivo { get; set; } 
     }
 }

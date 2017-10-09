@@ -10,7 +10,7 @@
 @using (Html.BeginForm())
 {
     <table class="form-group">
-        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.IdCategoria)
         <tr>
             <td>@Html.LabelFor(model => model.Descricao, new { @class = "col-md-2 control-label" })</td>
             <td>
@@ -22,7 +22,7 @@
             <td>@Html.LabelFor(model => model.StaAtivo, new { @class = "col-md-2 control-label" })</td>
             <td>
                 @Html.ValidationMessageFor(model => model.StaAtivo)
-                @Html.TextBoxFor(model => model.StaAtivo, new { @class = "form-control" })
+                @Html.RadioButtonFor(model => model.StaAtivo, new { @class = "form-control" })
             </td>
         </tr>
         <tr>
