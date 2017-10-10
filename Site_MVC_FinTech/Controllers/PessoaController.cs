@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace Site_MVC_FinTech.Controllers
 {
@@ -24,11 +25,17 @@ namespace Site_MVC_FinTech.Controllers
         [HttpPost]
         public ActionResult Cadastrar(Pessoa p)
         {
-            Repositorio.InserirPessoa(p);
+            bool sucesso = Repositorio.InserirPessoa(p);
 
-            return RedirectToAction("Listar");
+            if (sucesso)
+                ViewBag.Mensagem = "Cliente cadastrado com sucesso";
+            else
+                ViewBag.Mensagem = "ERRO: Cliente já cadastrado";
+
+            return View();
         }
 
+        [Authorize]
         public ActionResult Listar()
         {
             var pessoa = Repositorio.ListarPessoas();
@@ -36,6 +43,7 @@ namespace Site_MVC_FinTech.Controllers
             return View(pessoa);
         }
 
+        [Authorize]
         public ActionResult ExcluirPessoa(int id)
         {
             Repositorio.ExcluirPessoa(id);
@@ -43,6 +51,7 @@ namespace Site_MVC_FinTech.Controllers
             return RedirectToAction("Listar");
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult EditarPessoa(int id)
         {
@@ -51,32 +60,72 @@ namespace Site_MVC_FinTech.Controllers
             return View("Cadastrar", pessoa);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult EditarPessoa(Pessoa p)
         {
             Repositorio.AlterarPessoa(p);
 
-            return RedirectToAction("ListarPessoa");
+            return RedirectToAction("Listar");
         }
 
+        [AllowAnonymous]
         [HttpGet]
-        public ActionResult Login(string usuario, string senha)
+        public ActionResult Login(string returnUrl)
         {
-            Pessoa user = Repositorio.FindById(usuario, senha);
-            if (user.IDPessoa > 0)
-            {
-                TempData["mensagem"] = "Usuario logado com sucesso!";
-
-                return RedirectToAction("/AreaRestrita/Index");
-
-            }
-            else
-            {
-                TempData["mensagem"] = "Usuario não encontrado!";
-            }
-
+            ViewBag.ReturnUrl = returnUrl;
             return View();
-
         }
+
+        [AllowAnonymous]
+        [HttpPost]
+        public ActionResult Login(Pessoa model, string returnUrl)
+        {
+            var user = Repositorio.FindById(model.Usuario, model.Senha);
+            
+            if (user != null && user.Sta_Adm)
+            {
+                FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
+                                          user.Usuario,
+                                          DateTime.Now,
+                                          DateTime.Now.AddMinutes(30),
+                                          false,
+                                          "User",
+                                          FormsAuthentication.FormsCookiePath);
+
+                string encTicket = FormsAuthentication.Encrypt(ticket);
+
+                //cria o cookie
+                Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
+                FormsAuthentication.SetAuthCookie(user.Usuario, false);
+
+                if (!string.IsNullOrEmpty(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+                else
+                {
+                    return RedirectToAction("AreaRestrita", "Pessoa");
+                }
+            }
+
+            this.ModelState.AddModelError("Usuario", "Login ou senha incorretos");
+            return View(model);
+        }
+
+        [Authorize]
+        public ActionResult AreaRestrita()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public ActionResult Sair()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
+
     }
 }

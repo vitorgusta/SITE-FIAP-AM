@@ -1,9 +1,7 @@
 ﻿@model Site_MVC_FinTech.Models.Contato
-
 @{
     ViewBag.Title = "Contato";
 }
-
 <div class="cadContato">
     @using (Html.BeginForm())
     {
@@ -11,39 +9,47 @@
             <h2>Fale Conosco</h2>
             @Html.HiddenFor(model => model.IDContato)
             <tr>
-                <td>@Html.LabelFor(model => model.NomeContato, new { @class = "col-md-2 control-label contato" })</td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.NomeContato)
-                    @Html.TextBoxFor(model => model.NomeContato, new { @class = "form-control" })
-                </td>
+                <td colspan="2">@ViewBag.Mensagem </td>
             </tr>
-            <tr>
-                <td>@Html.LabelFor(model => model.EmailContato, new { @class = "col-md-2 control-label contato" })</td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.EmailContato)
-                    @Html.TextBoxFor(model => model.EmailContato, new { @class = "form-control" })
-                </td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(model => model.Mensagem, new { @class = "col-md-2 control-label contato" })</td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.Mensagem)
-                    @Html.TextBoxFor(model => model.Mensagem, new { @class = "form-control" })
-                </td>
-            </tr>
-            <tr>
-                <td>@Html.LabelFor(model => model.DataMensagem, new { @class = "col-md-2 control-label contato" })</td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.DataMensagem)
-                    @Html.TextBoxFor(model => model.DataMensagem, new { @class = "form-control" })
-                </td>
-            </tr>
-            <tr>
-                <td colspan="2" style="text-align:right"><input type="submit" value="Enviar Mensagem" /></td>
-            </tr>
+            @{
+                if (string.IsNullOrWhiteSpace(ViewBag.Mensagem))
+                {
+                    <tr>
+                        <td>@Html.LabelFor(model => model.NomeContato, new { @class = "col-md-2 control-label contato" })</td>
+                        <td>
+                            @Html.ValidationMessageFor(model => model.NomeContato)
+                            @Html.TextBoxFor(model => model.NomeContato, new { @class = "form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(model => model.EmailContato, new { @class = "col-md-2 control-label contato" })</td>
+                        <td>
+                            @Html.ValidationMessageFor(model => model.EmailContato)
+                            @Html.TextBoxFor(model => model.EmailContato, new { @class = "form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(model => model.Mensagem, new { @class = "col-md-2 control-label contato" })</td>
+                        <td>
+                            @Html.ValidationMessageFor(model => model.Mensagem)
+                            @Html.TextBoxFor(model => model.Mensagem, new { @class = "form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(model => model.DataMensagem, new { @class = "col-md-2 control-label contato" })</td>
+                        <td>
+                            @Html.ValidationMessageFor(model => model.DataMensagem)
+                            @Html.TextBoxFor(model => model.DataMensagem, new { @class = "form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="text-align:right"><input type="submit" value="Enviar Mensagem" /></td>
+                    </tr>
+                }
+            }
+
         </div>
     }
-
     <div class="institucional">
         <h3>Institucional</h3>
         <p>
@@ -54,6 +60,8 @@
         </p>
     </div>
 </div>
+
+<a class="btn btn-default" href="/Contato">Voltar para Contato</a>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

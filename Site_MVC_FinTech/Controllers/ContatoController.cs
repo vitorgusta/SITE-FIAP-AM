@@ -14,6 +14,7 @@ namespace Site_MVC_FinTech.Controllers
         {
             return View();
         }
+
         [HttpGet]
         public ActionResult Cadastrar()
         {
@@ -23,11 +24,15 @@ namespace Site_MVC_FinTech.Controllers
         [HttpPost]
         public ActionResult Cadastrar(Contato c)
         {
-            Repositorio.InserirContato(c);
+            bool enviamensagem = Repositorio.InserirContato(c);
 
-            return RedirectToAction("Listar");
+            if (enviamensagem)
+                ViewBag.Mensagem = "Mensagem enviada com sucesso. Aguarde e entraremos em contato";
+
+            return View();
         }
 
+        [Authorize]
         public ActionResult Listar()
         {
             var conntato = Repositorio.ListarContatos();
@@ -35,6 +40,7 @@ namespace Site_MVC_FinTech.Controllers
             return View(conntato);
         }
 
+        [Authorize]
         public ActionResult ExcluirContato(int id)
         {
             Repositorio.ExcluirContato(id);
@@ -42,6 +48,7 @@ namespace Site_MVC_FinTech.Controllers
             return RedirectToAction("Listar");
         }
 
+        [Authorize]
         public ActionResult EditarContato(int id)
         {
             var contato = Repositorio.ListarContato(id);
@@ -49,6 +56,7 @@ namespace Site_MVC_FinTech.Controllers
             return View("Cadastrar", contato);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult EditarContato(Contato c)
         {

@@ -18,12 +18,14 @@ namespace Site_MVC_FinTech.Controllers
             return View(noticia);
         }
 
+        [Authorize]
         [HttpGet]
         public ActionResult Cadastrar()
         {
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult Cadastrar(Noticia n)
         {
@@ -32,7 +34,7 @@ namespace Site_MVC_FinTech.Controllers
             return RedirectToAction("Listar");
         }
 
-        //[Authorize]
+        [Authorize]
         public ActionResult Listar()
         {
             var noticia = Repositorio.ListarNoticias();
@@ -40,6 +42,7 @@ namespace Site_MVC_FinTech.Controllers
             return View(noticia);
         }
 
+        [Authorize]
         public ActionResult ExcluirNoticia(int id)
         {
             Repositorio.ExcluirNoticia(id);
@@ -47,6 +50,7 @@ namespace Site_MVC_FinTech.Controllers
             return RedirectToAction("Listar");
         }
 
+        [Authorize]
         public ActionResult EditarNoticia(int id)
         {
             var noticia = Repositorio.ListarNoticia(id);
@@ -54,6 +58,7 @@ namespace Site_MVC_FinTech.Controllers
             return View("Cadastrar", noticia);
         }
 
+        [Authorize]
         [HttpPost]
         public ActionResult EditarNoticia(Noticia n)
         {

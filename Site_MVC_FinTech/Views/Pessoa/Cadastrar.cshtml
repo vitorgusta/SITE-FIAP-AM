@@ -12,50 +12,61 @@
     <table class="form-group">
         @Html.HiddenFor(model => model.IDPessoa)
         <tr>
-            <td>@Html.LabelFor(model => model.NomeCompleto, new { @class = "col-md-2 control-label" })</td>
-            <td>
-                @Html.ValidationMessageFor(model => model.NomeCompleto)
-                @Html.TextBoxFor(model => model.NomeCompleto, new { @class = "form-control" })
-            </td>
+            <td colspan="2">@ViewBag.Mensagem </td>
         </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.Endereco, new { @class = "col-md-2 control-label" })</td>
-            <td>
-                @Html.ValidationMessageFor(model => model.Endereco)
-                @Html.TextBoxFor(model => model.Endereco, new { @class = "form-control" })
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.Email, new { @class = "col-md-2 control-label" })</td>
-            <td>
-                @Html.ValidationMessageFor(model => model.Email)
-                @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.DataNascimento, new { @class = "col-md-2 control-label" })</td>
-            <td>
-                @Html.ValidationMessageFor(model => model.DataNascimento)
-                @Html.TextBoxFor(model => model.DataNascimento, new { @class = "form-control" })
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.Usuario, new { @class = "col-md-2 control-label" })</td>
-            <td>
-                @Html.ValidationMessageFor(model => model.Usuario)
-                @Html.TextBoxFor(model => model.Usuario, new { @class = "form-control" })
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.Senha, new { @class = "col-md-2 control-label" })</td>
-            <td>
-                @Html.ValidationMessageFor(model => model.Senha)
-                @Html.PasswordFor(model => model.Senha, new { @class = "form-control" })
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="text-align:right"><input type="submit" value="Cadastrar" /></td>
-        </tr>
+
+        @{
+
+            if (string.IsNullOrWhiteSpace(ViewBag.Mensagem))
+            {
+                <tr>
+                    <td>@Html.LabelFor(model => model.NomeCompleto, new { @class = "col-md-2 control-label" })</td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.NomeCompleto)
+                        @Html.TextBoxFor(model => model.NomeCompleto, new { @class = "form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Endereco, new { @class = "col-md-2 control-label" })</td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.Endereco)
+                        @Html.TextBoxFor(model => model.Endereco, new { @class = "form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Email, new { @class = "col-md-2 control-label" })</td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.Email)
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.DataNascimento, new { @class = "col-md-2 control-label" })</td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.DataNascimento)
+                        @Html.TextBoxFor(model => model.DataNascimento, new { @class = "form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Usuario, new { @class = "col-md-2 control-label" })</td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.Usuario)
+                        @Html.TextBoxFor(model => model.Usuario, new { @class = "form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Senha, new { @class = "col-md-2 control-label" })</td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.Senha)
+                        @Html.PasswordFor(model => model.Senha, new { @class = "form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:right"><input type="submit" value="Cadastrar" /></td>
+                </tr>
+            }
+        }
+
     </table>
 
     <a class="btn btn-default" href="/Pessoa">Voltar para Cliente</a>

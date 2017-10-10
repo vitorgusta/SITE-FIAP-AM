@@ -8,13 +8,24 @@ namespace Site_MVC_FinTech.Models
     public class Repositorio
     {
         /*INSERIR   */
-        public static void InserirPessoa(Pessoa pess)
+        public static bool InserirPessoa(Pessoa pess)
         {
             using (var ctx = new ClassContext())
             {
-                ctx.Pessoa.Add(pess);
-                ctx.SaveChanges();
 
+                List<Pessoa> pessoa = ctx.Pessoa.Where(p =>
+                    p.NomeCompleto.Equals(pess.NomeCompleto, StringComparison.CurrentCultureIgnoreCase) ||
+                    p.Usuario.Equals(pess.Usuario, StringComparison.CurrentCultureIgnoreCase)).ToList();
+
+                if (pessoa.Count == 0)
+                {
+                    ctx.Pessoa.Add(pess);
+                    ctx.SaveChanges();
+
+                    return true;
+                }
+
+                return false;
             }
         }
         public static void InserirNoticia(Noticia not)
@@ -25,12 +36,14 @@ namespace Site_MVC_FinTech.Models
                 ctx.SaveChanges();
             }
         }
-        public static void InserirContato(Contato cont)
+        public static bool InserirContato(Contato cont)
         {
             using (var ctx = new ClassContext())
             {
                 ctx.Contato.Add(cont);
                 ctx.SaveChanges();
+
+                return true;
             }
         }
 
@@ -79,12 +92,14 @@ namespace Site_MVC_FinTech.Models
 
         public static Pessoa FindById(string usuario, string senha)
         {
-
-           using(var ctx = new ClassContext())
+            using (var ctx = new ClassContext())
             {
-                return ctx.Pessoa.FirstOrDefault(user => user.Usuario.Equals(usuario,StringComparison.CurrentCultureIgnoreCase) && user.Senha.Equals(senha, StringComparison.CurrentCultureIgnoreCase));
+                return ctx.Pessoa.FirstOrDefault(user =>
+                                                user.Usuario.Equals(usuario, StringComparison.CurrentCultureIgnoreCase) &&
+                                                user.Senha.Equals(senha, StringComparison.CurrentCultureIgnoreCase)
+                                            );
             }
-           
+
         }
 
         /*EXCLUIR   */

@@ -11,6 +11,9 @@
     <table class="form-group">
         @Html.HiddenFor(model => model.IDNoticia)
         <tr>
+            <td colspan="2">@ViewBag.Mensagem </td>
+        </tr>
+        <tr>
             <td>@Html.LabelFor(model => model.Titulo, new { @class = "col-md-2 control-label" })</td>
             <td>
                 @Html.ValidationMessageFor(model => model.Titulo)
@@ -30,6 +33,11 @@
                 @Html.ValidationMessageFor(model => model.Imagem)
                 @Html.TextBoxFor(model => model.Imagem, new { @class = "form-control" })
             </td>
+            @*<td>
+                <input type="file" name="file" id="file" />
+                @Html.HiddenFor(model => model.Imagem)
+                @Html.ValidationMessageFor(model => model.Imagem)
+            </td>*@
         </tr>
         <tr>
             <td>@Html.LabelFor(model => model.DataMateria, new { @class = "col-md-2 control-label" })</td>
