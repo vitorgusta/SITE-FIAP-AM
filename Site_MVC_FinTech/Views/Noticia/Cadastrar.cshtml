@@ -26,10 +26,19 @@
         </tr>
         <tr>
             <td>@Html.LabelFor(model => model.Imagem, new { @class = "col-md-2 control-label" })</td>
-            <td>
+            @*<td>
                 @Html.ValidationMessageFor(model => model.Imagem)
                 @Html.TextBoxFor(model => model.Imagem, new { @class = "form-control" })
+            </td>*@
+
+
+            <td>
+                <input type="file" name="file" id="file" />
+                @Html.HiddenFor(model => model.Imagem)
+                @Html.ValidationMessageFor(model => model.Imagem)
             </td>
+
+
         </tr>
         <tr>
             <td>@Html.LabelFor(model => model.DataMateria, new { @class = "col-md-2 control-label" })</td>
