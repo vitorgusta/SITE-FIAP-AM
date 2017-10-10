@@ -60,21 +60,29 @@ namespace Site_MVC_FinTech.Controllers
         }
 
         [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
         public ActionResult Login(string usuario, string senha)
         {
-            Pessoa user = Repositorio.FindById(usuario, senha);
+            var user = Repositorio.FindById(usuario, senha);
             if (user.IDPessoa > 0)
             {
                 TempData["mensagem"] = "Usuario logado com sucesso!";
 
-                return RedirectToAction("/AreaRestrita/Index");
+                return RedirectToAction("AreaRestrita");
             }
             else
             {
                 TempData["mensagem"] = "Usuario não encontrado!";
+                return View();
             }
 
-            return View();
+           
         }
     }
 }
