@@ -22,11 +22,12 @@
             <td>@Html.DisplayFor(model => item.EmailContato)</td>
             <td>@Html.DisplayFor(model => item.Mensagem)</td>
             <td>@Html.DisplayFor(model => item.DataMensagem)</td>
-            <td>
+            @*<td>
                 @Html.ActionLink("Editar", "EditarContato", new { id = item.IDContato }) |
                 @Html.ActionLink("Excluir", "ExcluirContato", new { id = item.IDContato })
-            </td>
+            </td>*@
         </tr>
     }
 
 </table>
+

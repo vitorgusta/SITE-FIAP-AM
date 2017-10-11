@@ -27,12 +27,12 @@
             <td>@Html.DisplayFor(modelitem => item.DataNascimento)</td>
             <td>@Html.DisplayFor(modelitem => item.Usuario)</td>
             <td>@Html.DisplayFor(modelitem => item.Senha)</td>
-            <td>
+            @*<td>
                 @Html.ActionLink("Editar", "EditarPessoa", new { id = item.IDPessoa }) |
                 @Html.ActionLink("Excluir", "ExcluirPessoa", new { id = item.IDPessoa })
-            </td>
+            </td>*@
         </tr>
     }
 </table>
 <br />
-@Html.ActionLink("Voltar para Clientes", "Index") | @Html.ActionLink("Cadastrar Cliente", "Cadastrar")
+@Html.ActionLink("Voltar para Clientes", "Index") @*| @Html.ActionLink("Cadastrar Cliente", "Cadastrar")*@
