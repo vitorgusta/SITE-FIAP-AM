@@ -1,6 +1,7 @@
 ﻿using Site_MVC_FinTech.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -27,9 +28,18 @@ namespace Site_MVC_FinTech.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult Cadastrar(Noticia n)
+        public ActionResult Cadastrar(Noticia n, HttpPostedFileBase ImageFile)
         {
-            Repositorio.InserirNoticia(n);
+            using (var ms = new MemoryStream())
+            {
+                ImageFile.InputStream.CopyTo(ms);
+                n.Image = ms.ToArray();
+            }
+
+            if (ModelState.IsValid)
+            {
+                Repositorio.InserirNoticia(n);
+            }
 
             return RedirectToAction("Listar");
         }

@@ -12,31 +12,33 @@ namespace Site_MVC_FinTech.Models
         [Key]
         public int IDPessoa { get; set; }
 
-        [DisplayName("Nome Completo *")]
+        [DisplayName("Nome Completo")]
         [StringLength(30, ErrorMessage = "O campo Nome permite no máximo 30 caracteres!")]
         [Required]
         public string NomeCompleto { get; set; }
-        
-        [DisplayName("Endereço")]
-        public string Endereco { get; set; }
 
-        [DisplayName("E-mail *")]
+        [DisplayName("CPF")]
+        [Required]
+        [Range(1, 99999999999, ErrorMessage = "Não pode ter mais que 11 digitos!")]
+        public long Cpf { get; set; }
+
+        [DisplayName("E-mail")]
         [StringLength(30)]
         [Required]
         [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "Email inválido.")]
         public string Email { get; set; }
 
-        [DisplayName("Data Nascimento *")]
-        [DataType(DataType.Date)]
+        [DisplayName("Idade")]
+        [Range(1, 120)]
         [Required]
-        public DateTime DataNascimento { get; set; }
+        public int Idade { get; set; }
 
-        [DisplayName("Usuário *")]
+        [DisplayName("Usuário")]
         [StringLength(30, ErrorMessage = "O campo Usuário permite no máximo 30 caracteres!")]
         [Required]
         public string Usuario { get; set; }
 
-        [DisplayName("Senha *")]
+        [DisplayName("Senha")]
         [StringLength(15, ErrorMessage = "O campo Senha permite no máximo 15 caracteres!")]
         [Required]
         public string Senha { get; set; }

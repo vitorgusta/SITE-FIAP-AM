@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -22,9 +23,8 @@ namespace Site_MVC_FinTech.Models
         [Required(ErrorMessage = "O campo Matéria é obrigatório ")]
         public string Materia { get; set; }
 
-        [DisplayName("Imagem")]
-        [Required]
-        public string Imagem { get; set; }
+        [Column(TypeName = "image")]
+        public byte[] Image { get; set; }
 
         [DisplayName("Data Matéria")]
         [DataType(DataType.Date)]

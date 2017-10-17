@@ -64,5 +64,23 @@ namespace Site_MVC_FinTech.Controllers
 
             return RedirectToAction("Listar");
         }
+
+        //PESQUISA
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult Pesquisar()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Pesquisar(string texto, string combo)
+        {
+            var pessoa = Repositorio.Pesquisar(texto, combo);
+
+            return View(pessoa);
+        }
     }
 }

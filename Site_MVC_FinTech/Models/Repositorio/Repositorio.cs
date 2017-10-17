@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 
@@ -14,7 +15,7 @@ namespace Site_MVC_FinTech.Models
             {
 
                 List<Pessoa> pessoa = ctx.Pessoa.Where(p =>
-                    p.NomeCompleto.Equals(pess.NomeCompleto, StringComparison.CurrentCultureIgnoreCase) ||
+                    p.NomeCompleto.Equals(pess.NomeCompleto, StringComparison.CurrentCultureIgnoreCase) &&
                     p.Usuario.Equals(pess.Usuario, StringComparison.CurrentCultureIgnoreCase)).ToList();
 
                 if (pessoa.Count == 0)
@@ -142,9 +143,9 @@ namespace Site_MVC_FinTech.Models
                 Pessoa pessoa = ctx.Pessoa.Where(p => p.IDPessoa == pess.IDPessoa).First();
 
                 pessoa.NomeCompleto = pess.NomeCompleto;
-                pessoa.Endereco = pess.Endereco;
+                pessoa.Cpf = pess.Cpf;
                 pessoa.Email = pess.Email;
-                pessoa.DataNascimento = pess.DataNascimento;
+                pessoa.Idade = pess.Idade;
                 pessoa.Usuario = pess.Usuario;
                 pessoa.Senha = pess.Senha;
 
@@ -159,7 +160,7 @@ namespace Site_MVC_FinTech.Models
 
                 noticia.Titulo = not.Titulo;
                 noticia.Materia = not.Materia;
-                noticia.Imagem = not.Imagem;
+                noticia.Image = not.Image;
                 noticia.DataMateria = not.DataMateria;
 
                 ctx.SaveChanges();
@@ -177,6 +178,50 @@ namespace Site_MVC_FinTech.Models
                 contato.DataMensagem = cont.DataMensagem;
 
                 ctx.SaveChanges();
+            }
+        }
+
+        /*PESQUISAR   */
+        public static IEnumerable<Pessoa> Pesquisar(string texto, string combo)
+        {
+
+            using (var ctx = new ClassContext())
+            {
+                List<Pessoa> pessoa = null;
+                switch (combo)
+                {
+                    case "todos":
+                        pessoa = ctx.Pessoa.Where(f => f.NomeCompleto.Contains(texto)).OrderBy(x => x.IDPessoa).ToList();
+                        break;
+
+                    case "nome":
+
+                        if (texto != "")
+                            pessoa = ctx.Pessoa.Where(f => f.NomeCompleto.Contains(texto)).OrderBy(x => x.NomeCompleto).ToList();
+                        break;
+
+                    case "cpf":
+                        if (texto != "")
+                        {
+                            long cpf = Convert.ToInt64(texto);
+
+                            if (cpf != 0)
+                                pessoa = ctx.Pessoa.Where(f => f.Cpf == cpf).OrderBy(x => x.Cpf).ToList();
+                        }
+                        break;
+
+                    case "idade":
+                        if (texto != "")
+                        {
+                            int idade = Convert.ToInt32(texto);
+
+                            if (idade != 0)
+                                pessoa = ctx.Pessoa.Where(f => f.Idade == idade).OrderBy(x => x.Idade).ToList();
+                        }
+                        break;
+                }
+                return pessoa;
+
             }
         }
     }

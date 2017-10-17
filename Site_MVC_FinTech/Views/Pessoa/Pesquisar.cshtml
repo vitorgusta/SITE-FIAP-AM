@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Site_MVC_FinTech.Models.Pessoa>
+
+@{
+    ViewBag.Title = "Pesquisar";
+}
+
+<h2>Pesquisar Clientes</h2>
+<div>
+    <div>
+        @using (Html.BeginForm())
+        {
+            <input type="text" name="texto" id="texto" placeholder="Digite a pesquisa" />
+            <input type="submit" value="Pesquisar" />
+
+            <select name="combo">
+                <option value="todos">Todos</option>
+                <option value="nome">Nome</option>
+                <option value="cpf">CPF</option>
+                <option value="idade">Idade</option>
+            </select>
+        }
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Nome Completo</th>
+            <th>CPF</th>
+            <th>Email</th>
+            <th>Idade</th>
+            <th>Usuario</th>
+            @*<th>Senha</th>*@
+            <th></th>
+        </tr>
+        @{
+            if (Model != null)
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.IDPessoa</td>
+                        <td>@item.NomeCompleto</td>
+                        <td>@item.Cpf</td>
+                        <td>@item.Email</td>
+                        <td>@item.Idade</td>
+                        <td>@item.Usuario</td>
+                        @*<td>@item.Senha)</td>*@
+                    </tr>
+                }
+            }
+        }
+    </table>
+</div>
+
+<a class="btn btn-default" href="/Pessoa/AreaRestrita">Area Restrita</a>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

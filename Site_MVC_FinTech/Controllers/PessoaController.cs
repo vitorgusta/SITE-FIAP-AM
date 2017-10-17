@@ -119,13 +119,32 @@ namespace Site_MVC_FinTech.Controllers
             return View();
         }
 
+        //PESQUISA
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult Pesquisar()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public ActionResult Pesquisar(string texto, string combo)
+        {
+            var pessoa = Repositorio.Pesquisar(texto, combo);
+
+            return View(pessoa);
+        }
+
+        // SAIR LOG-OUT
+
         [Authorize]
         public ActionResult Sair()
         {
             FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
         }
-
-
+        
     }
 }

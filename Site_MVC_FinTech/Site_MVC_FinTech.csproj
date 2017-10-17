@@ -282,6 +282,8 @@
     <Content Include="Views\Investidor\Index.cshtml" />
     <Content Include="Views\Pessoa\AreaRestrita.cshtml" />
     <Content Include="Views\Pessoa\Login.cshtml" />
+    <Content Include="Views\Pessoa\Pesquisar.cshtml" />
+    <Content Include="Views\Contato\Pesquisar.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
