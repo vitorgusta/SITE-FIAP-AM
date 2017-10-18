@@ -23,8 +23,7 @@ namespace Site_MVC_FinTech.Models
         [Required(ErrorMessage = "O campo Matéria é obrigatório ")]
         public string Materia { get; set; }
 
-        [Column(TypeName = "image")]
-        public byte[] Image { get; set; }
+        public string Image { get; set; }
 
         [DisplayName("Data Matéria")]
         [DataType(DataType.Date)]
@@ -35,5 +34,5 @@ namespace Site_MVC_FinTech.Models
 
         //public <Categoria> Categorias {get; set;}
 
-     }
+    }
 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - FinTech</title>
+    <title>@ViewBag.Title - Gophers</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -17,7 +17,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("FinTech", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href="~/Home/Index"> <img class="img-logo" src="~/Imagens/logo.png" /></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -43,7 +43,7 @@
     </div>
     <footer>
         <hr />
-        <p>&copy; @DateTime.Now.Year - Site Institucional MVC - FINTECH | <a href="http://fiap.com.br"> <img src="~/Imagens/fiapicon.ico" /></a> </p>
+        <p>&copy; @DateTime.Now.Year - Site Institucional MVC - Desenvolvido por Gophers |<a href="http://fiap.com.br"><img src="~/Imagens/fiapicon.ico" /></a></p>
     </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

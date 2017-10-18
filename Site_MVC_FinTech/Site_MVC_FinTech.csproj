@@ -227,12 +227,15 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagens\contato.png" />
     <Content Include="Imagens\fiapicon.ico" />
     <Content Include="Imagens\home fundo.jpg" />
     <Content Include="Imagens\Home1.png" />
     <Content Include="Imagens\Home2.png" />
+    <Content Include="Imagens\homecliente.png" />
     <Content Include="Imagens\iconup.svg" />
     <Content Include="Imagens\imagemnoticia1.jpg" />
+    <Content Include="Imagens\logo.PNG" />
     <Content Include="Imagens\pessoa.png" />
     <Content Include="Imagens\teste.png" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />

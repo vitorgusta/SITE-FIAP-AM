@@ -30,14 +30,22 @@ namespace Site_MVC_FinTech.Controllers
         [HttpPost]
         public ActionResult Cadastrar(Noticia n, HttpPostedFileBase ImageFile)
         {
-            using (var ms = new MemoryStream())
+            if (ImageFile != null)
             {
-                ImageFile.InputStream.CopyTo(ms);
-                n.Image = ms.ToArray();
+                using (var ms = new MemoryStream())
+                {
+                    ImageFile.InputStream.CopyTo(ms);
+                    n.Image = $"data:image/gif;base64,{Convert.ToBase64String(ms.ToArray())}";
+                }
             }
 
-            if (ModelState.IsValid)
+            if (n.IDNoticia > 0)
             {
+                Repositorio.AlterarNoticia(n);
+            }
+            else
+            {
+                n.DataMateria = DateTime.Now;
                 Repositorio.InserirNoticia(n);
             }
 
@@ -61,6 +69,18 @@ namespace Site_MVC_FinTech.Controllers
         }
 
         [Authorize]
+        public ActionResult ExcluirFotoNoticia(int id)
+        {
+           Noticia not =  Repositorio.ListarNoticia(id);
+
+            not.Image = null;
+
+            Repositorio.AlterarNoticia(not);
+
+            return View("Cadastrar", not);
+        }
+
+        [Authorize]
         public ActionResult EditarNoticia(int id)
         {
             var noticia = Repositorio.ListarNoticia(id);
@@ -70,8 +90,17 @@ namespace Site_MVC_FinTech.Controllers
 
         [Authorize]
         [HttpPost]
-        public ActionResult EditarNoticia(Noticia n)
+        public ActionResult EditarNoticia(Noticia n, HttpPostedFileBase ImageFile)
         {
+            if (ImageFile != null)
+            {
+                using (var ms = new MemoryStream())
+                {
+                    ImageFile.InputStream.CopyTo(ms);
+                    n.Image = $"data:image/gif;base64,{Convert.ToBase64String(ms.ToArray())}";
+                }
+            }
+
             Repositorio.AlterarNoticia(n);
 
             return RedirectToAction("Listar");
