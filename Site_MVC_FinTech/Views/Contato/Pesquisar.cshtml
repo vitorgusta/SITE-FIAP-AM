@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Site_MVC_FinTech.Models.Pessoa>
+﻿@model IEnumerable<Site_MVC_FinTech.Models.Contato>
 
 @{
     ViewBag.Title = "Pesquisar";
@@ -15,8 +15,7 @@
             <select name="combo">
                 <option value="todos">Todos</option>
                 <option value="nome">Nome</option>
-                <option value="cpf">CPF</option>
-                <option value="idade">Idade</option>
+                <option value="mensagem">Mensagem</option>
             </select>
         }
     </div>
@@ -24,29 +23,30 @@
     <table class="table">
         <tr>
             <th>ID</th>
-            <th>Nome Completo</th>
-            <th>CPF</th>
-            <th>Email</th>
-            <th>Idade</th>
-            <th>Usuario</th>
-            @*<th>Senha</th>*@
-            <th></th>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Mensagem</th>
+            <th>Data Mensagem</th>
         </tr>
         @{
-            if (Model != null)
+            if (Model != null && ((List<Site_MVC_FinTech.Models.Contato>)Model).Count > 0)
             {
                 foreach (var item in Model)
                 {
                     <tr>
-                        <td>@item.IDPessoa</td>
-                        <td>@item.NomeCompleto</td>
-                        <td>@item.Cpf</td>
-                        <td>@item.Email</td>
-                        <td>@item.Idade</td>
-                        <td>@item.Usuario</td>
-                        @*<td>@item.Senha)</td>*@
+                        <td>@item.IDContato</td>
+                        <td>@item.NomeContato</td>
+                        <td>@item.EmailContato</td>
+                        <td>@item.Mensagem</td>
+                        <td>@item.DataMensagem</td>
                     </tr>
                 }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7">@ViewBag.Mensagem</td>
+                </tr>
             }
         }
     </table>
@@ -57,3 +57,5 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
+    

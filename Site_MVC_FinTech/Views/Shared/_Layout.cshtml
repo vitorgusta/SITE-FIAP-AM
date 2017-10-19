@@ -26,12 +26,13 @@
                         <li>@Html.ActionLink("Notícias", "Listar", "Noticia")</li>
                         <li>@Html.ActionLink("Clientes", "Listar", "Pessoa")</li>
                         <li>@Html.ActionLink("Contato", "Listar", "Contato")</li>
+                        <li>@Html.ActionLink("Investidor", "Index", "Investidor", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                     }
                     else
                     {
                         <li>@Html.ActionLink("Notícias", "Index", "Noticia")</li>
-                        <li>@Html.ActionLink("Clientes", "Index", "Pessoa")</li>
                         <li>@Html.ActionLink("Contato", "Index", "Contato")</li>
+                        <li>@Html.ActionLink("Investidor", "Index", "Investidor", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")
@@ -43,7 +44,7 @@
     </div>
     <footer>
         <hr />
-        <p>&copy; @DateTime.Now.Year - Site Institucional MVC - Desenvolvido por Gophers |<a href="http://fiap.com.br"><img src="~/Imagens/fiapicon.ico" /></a></p>
+        <p>&copy; @DateTime.Now.Year - Site Institucional MVC - Desenvolvido por Gophers |<a class="icone-fiap" href="http://fiap.com.br"><img src="~/Imagens/fiapicon.ico" /></a></p>
     </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

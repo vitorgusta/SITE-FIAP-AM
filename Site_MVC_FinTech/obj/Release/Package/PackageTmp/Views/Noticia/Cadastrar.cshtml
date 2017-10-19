@@ -1,0 +1,79 @@
+﻿@model Site_MVC_FinTech.Models.Noticia
+
+@{
+    ViewBag.Title = "Noticia";
+}
+
+<div class="cliente-index">
+    <div class="cliente-index-div">
+        <h2>Cadastro de Noticia</h2>
+
+                @using (Html.BeginForm("Cadastrar", "Noticia", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                {
+                    <table class="table">
+                        @Html.HiddenFor(model => model.IDNoticia)
+                        <tr>
+                            <td colspan="2">@ViewBag.Mensagem </td>
+                        </tr>
+                        <tr>
+                            <td>@Html.LabelFor(model => model.Titulo, new { @class = "col-md-2 control-label contato" })</td>
+                            <td>
+                                @Html.ValidationMessageFor(model => model.Titulo)
+                                @Html.TextBoxFor(model => model.Titulo, new { @class = "form-control" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@Html.LabelFor(model => model.Materia, new { @class = "col-md-2 control-label contato" })</td>
+                            <td>
+                                @Html.ValidationMessageFor(model => model.Materia)
+                                @Html.TextAreaFor(model => model.Materia, new { @class = "form-control" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@Html.LabelFor(model => model.Image, new { @class = "col-md-2 control-label contato" })</td>
+                            <td>
+                                @{
+                                    if (Model != null && Model.IDNoticia > 0 && Model.Image != null)
+                                    {
+                                        @Html.ActionLink("Excluir Foto", "ExcluirFotoNoticia", new { id = Model.IDNoticia })
+                                    }
+                                    else
+                                    {
+                                        <input name="ImageFile" type="file" />
+                                    }
+                                }
+                                @Html.HiddenFor(model => model.Image)
+                                @{
+                                    if (Model != null && Model.IDNoticia > 0)
+                                    {
+                                        if (Model.Image != null)
+                                        {
+                                            var imgSrc = Model.Image;
+
+                                        <td class="noticiaimagem">
+                                            <img class="noticiaimagem" src="@imgSrc" />
+                                        </td>
+                                        }
+                                        else
+                                        {
+                                            <td class="noticiaimagem">
+                                                <img class="noticiaimagem" src="~/Imagens/semfoto.jpeg" />
+                                            </td>
+                                        }
+                                    }
+                                }
+                            </td>
+                        </tr>
+                            @Html.HiddenFor(model => model.DataMateria)
+                            <tr>
+                                <td colspan="2" style="text-align:right"><input type="submit" value="Salvar" /></td>
+                            </tr>
+                            </table>
+
+                                    <a class="btn btn-default" href="/Noticia/Listar">Voltar para Noticias</a>
+                                    }
+            </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -23,6 +23,7 @@ namespace Site_MVC_FinTech.Models
         [Required(ErrorMessage = "O campo Matéria é obrigatório ")]
         public string Materia { get; set; }
 
+        [DisplayName("Imagem")]
         public string Image { get; set; }
 
         [DisplayName("Data Matéria")]

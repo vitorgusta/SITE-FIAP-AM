@@ -30,7 +30,7 @@ namespace Site_MVC_FinTech.Controllers
             if (sucesso)
                 ViewBag.Mensagem = "Cliente cadastrado com sucesso";
             else
-                ViewBag.Mensagem = "ERRO: Cliente já cadastrado";
+                ViewBag.Mensagem = "ERRO: Cliente (CPF), já cadastrado";
 
             return View();
         }
@@ -125,14 +125,22 @@ namespace Site_MVC_FinTech.Controllers
         [HttpGet]
         public ActionResult Pesquisar()
         {
-            return View();
+            var pessoa = Repositorio.PesquisarPessoa();
+
+            if (pessoa == null || ((List<Pessoa>)pessoa).Count == 0)
+                ViewBag.Mensagem = "Nenhum cliente cadastrado";
+
+            return View(pessoa);
         }
 
         [Authorize]
         [HttpPost]
         public ActionResult Pesquisar(string texto, string combo)
         {
-            var pessoa = Repositorio.Pesquisar(texto, combo);
+            var pessoa = Repositorio.PesquisarPessoa(texto, combo);
+
+            if (pessoa == null || ((List<Pessoa>)pessoa).Count == 0)
+                ViewBag.Mensagem = "Nenhum cliente encontrado";
 
             return View(pessoa);
         }

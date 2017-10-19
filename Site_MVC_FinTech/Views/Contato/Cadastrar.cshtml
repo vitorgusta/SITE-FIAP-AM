@@ -38,11 +38,12 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>@Html.LabelFor(model => model.DataMensagem, new { @class = "col-md-2 control-label contato" })</td>
+                                @Html.HiddenFor(model => model.DataMensagem)
+                                @*<td>@Html.LabelFor(model => model.DataMensagem, new { @class = "col-md-2 control-label contato" })</td>
                                 <td>
                                     @Html.ValidationMessageFor(model => model.DataMensagem)
                                     @Html.TextBoxFor(model => model.DataMensagem, new { @class = "form-control" })
-                                </td>
+                                </td>*@
                             </tr>
                             <tr>
                                 <td colspan="2" style="text-align:right"><input type="submit" value="Enviar Mensagem" /></td>

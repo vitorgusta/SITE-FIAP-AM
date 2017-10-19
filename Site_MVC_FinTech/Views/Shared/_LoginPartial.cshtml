@@ -6,7 +6,6 @@
     @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Investidor", "Index", "Investidor", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
 
         <li>
             @Html.ActionLink("Olá " + User.Identity.GetUserName() + "!", "AreaRestrita", "Pessoa", routeValues: null, htmlAttributes: new { title = "Manage" })
@@ -18,7 +17,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
-        <li>@Html.ActionLink("Investidor", "Index", "Investidor", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Àrea Restrita", "Login", "Pessoa", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li><a class="btn btn-default" href="/Pessoa/Cadastrar">Cadastre-se</a></li>
     </ul>
 }

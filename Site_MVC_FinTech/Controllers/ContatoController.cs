@@ -24,6 +24,7 @@ namespace Site_MVC_FinTech.Controllers
         [HttpPost]
         public ActionResult Cadastrar(Contato c)
         {
+            c.DataMensagem = DateTime.Now;
             bool enviamensagem = Repositorio.InserirContato(c);
 
             if (enviamensagem)
@@ -71,16 +72,24 @@ namespace Site_MVC_FinTech.Controllers
         [HttpGet]
         public ActionResult Pesquisar()
         {
-            return View();
+            var contato = Repositorio.PesquisarContato();
+
+            if (contato == null || ((List<Contato>)contato).Count == 0)
+                ViewBag.Mensagem = "Nenhum contato cadastrado";
+
+            return View(contato);
         }
 
         [Authorize]
         [HttpPost]
         public ActionResult Pesquisar(string texto, string combo)
         {
-            var pessoa = Repositorio.Pesquisar(texto, combo);
+            var contato = Repositorio.PesquisarContato(texto, combo);
 
-            return View(pessoa);
+            if (contato == null || ((List<Contato>)contato).Count == 0)
+                ViewBag.Mensagem = "Nenhum contato encontrado";
+
+            return View(contato);
         }
     }
 }

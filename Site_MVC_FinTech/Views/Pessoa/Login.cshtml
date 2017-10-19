@@ -8,17 +8,17 @@
 
 @using (Html.BeginForm())
 {
-    <table class="form-group">
+    <div class="form-group-contato">
         @Html.HiddenFor(model => model.Sta_Adm)
         <tr>
-            <td>@Html.LabelFor(model => model.Usuario, new { @class = "col-md-2 control-label" })</td>
+            <td>@Html.LabelFor(model => model.Usuario, new { @class = "col-md-2 control-label contato" })</td>
             <td>
                 @Html.ValidationMessageFor(model => model.Usuario)
                 @Html.TextBoxFor(model => model.Usuario, new { @class = "form-control" })
             </td>
         </tr>
         <tr>
-            <td>@Html.LabelFor(model => model.Senha, new { @class = "col-md-2 control-label" })</td>
+            <td>@Html.LabelFor(model => model.Senha, new { @class = "col-md-2 control-label contato" })</td>
             <td>
                 @Html.ValidationMessageFor(model => model.Senha)
                 @Html.PasswordFor(model => model.Senha, new { @class = "form-control" })
@@ -27,9 +27,9 @@
         <tr>
             <td colspan="2" style="text-align:right"><input type="submit" value="Login" /></td>
         </tr>
-    </table>
+        </div>
 
-    <a class="btn btn-default" href="~/Home/Index">Voltar</a>
+        <a class="btn btn-default" href="~/Home/Index">Voltar</a>
 }
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

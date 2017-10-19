@@ -222,7 +222,6 @@
       <DependentUpon>Database_Fintech.mdf</DependentUpon>
     </Content>
     <Content Include="Content\bootstrap.css" />
-    <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -235,8 +234,10 @@
     <Content Include="Imagens\homecliente.png" />
     <Content Include="Imagens\iconup.svg" />
     <Content Include="Imagens\imagemnoticia1.jpg" />
+    <Content Include="Imagens\imgnoticia.PNG" />
     <Content Include="Imagens\logo.PNG" />
     <Content Include="Imagens\pessoa.png" />
+    <Content Include="Imagens\semfoto.jpeg" />
     <Content Include="Imagens\teste.png" />
     <Content Include="Scripts\ai.0.22.9-build00167.js" />
     <Content Include="Scripts\ai.0.22.9-build00167.min.js" />
@@ -245,6 +246,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Properties\PublishProfiles\IsaInvest.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

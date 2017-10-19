@@ -17,6 +17,7 @@
                 <option value="nome">Nome</option>
                 <option value="cpf">CPF</option>
                 <option value="idade">Idade</option>
+                <option value="adm">Administrador</option>
             </select>
         }
     </div>
@@ -29,11 +30,10 @@
             <th>Email</th>
             <th>Idade</th>
             <th>Usuario</th>
-            @*<th>Senha</th>*@
-            <th></th>
+            <th>ADM</th>
         </tr>
         @{
-            if (Model != null)
+            if (Model != null && ((List<Site_MVC_FinTech.Models.Pessoa>)Model).Count > 0)
             {
                 foreach (var item in Model)
                 {
@@ -44,9 +44,15 @@
                         <td>@item.Email</td>
                         <td>@item.Idade</td>
                         <td>@item.Usuario</td>
-                        @*<td>@item.Senha)</td>*@
+                        <td>@item.Sta_Adm</td>
                     </tr>
                 }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7">@ViewBag.Mensagem</td>
+                </tr>
             }
         }
     </table>

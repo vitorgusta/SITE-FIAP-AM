@@ -18,7 +18,7 @@ namespace Site_MVC_FinTech.Models
         public string NomeContato { get; set; }
 
         [DisplayName("E-mail")]
-        [StringLength(50)]
+        [StringLength(50, ErrorMessage = "O campo Nome permite no máximo 50 caracteres!")]
         [Required(ErrorMessage = "O campo Email é obrigatório")]
         [RegularExpression(@"\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*", ErrorMessage = "Email inválido.")]
         public string EmailContato { get; set; }
