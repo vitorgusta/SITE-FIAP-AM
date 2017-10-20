@@ -1,0 +1,22 @@
+create or replace view vw_noticia as 
+select noti.id
+,      cate.categoria
+,      titulo
+,      materia
+,      data_materia
+from go_categoria cate
+,    go_noticias  noti
+where noti.GO_CATEGORIA_ID = cate.id
+and   noti.sta_ativo = 'S'
+and   cate.STA_ATIVO = 'S';
+
+create or replace view vw_contato as
+select pess.NOME_COMPLETO
+,      pess.email
+,      cont.mensagem
+from go_pessoa  pess
+,    go_contato cont
+where cont.GO_PESSOA_ID = pess.id
+order by cont.DT_MENSAGEM;
+
+
