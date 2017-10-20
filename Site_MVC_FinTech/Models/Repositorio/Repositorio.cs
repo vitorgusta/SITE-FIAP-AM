@@ -46,6 +46,17 @@ namespace Site_MVC_FinTech.Models
             }
         }
 
+        public static bool InserirProduto(Produto prod)
+        {
+            using (var ctx = new ClassContext())
+            {
+                ctx.Produto.Add(prod);
+                ctx.SaveChanges();
+
+                return true;
+            }
+        }
+
         /*LISTAR TODOS   */
         public static IEnumerable<Pessoa> ListarPessoas()
         {
@@ -66,6 +77,12 @@ namespace Site_MVC_FinTech.Models
             return ctx.Contato;
         }
 
+        public static IEnumerable<Produto> ListarProdutos()
+        {
+            var ctx = new ClassContext();
+
+            return ctx.Produto;
+        }
         /*LISTAR   */
         public static Pessoa ListarPessoa(int idpessoa)
         {
@@ -86,6 +103,13 @@ namespace Site_MVC_FinTech.Models
             using (var ctx = new ClassContext())
             {
                 return ctx.Contato.Where(f => f.IDContato == idcontato).First();
+            }
+        }
+        public static Produto ListarProduto(int idproduto)
+        {
+            using (var ctx = new ClassContext())
+            {
+                return ctx.Produto.Where(f => f.IDProduto == idproduto).First();
             }
         }
 
@@ -132,6 +156,16 @@ namespace Site_MVC_FinTech.Models
                 ctx.SaveChanges();
             }
         }
+        public static void ExcluirProduto(int idproduto)
+        {
+            using (var ctx = new ClassContext())
+            {
+                Produto produto = ctx.Produto.Where(c => c.IDProduto == idproduto).First();
+
+                ctx.Produto.Remove(produto);
+                ctx.SaveChanges();
+            }
+        }
 
         /*ALTERAR   */
         public static void AlterarPessoa(Pessoa pess)
@@ -174,6 +208,19 @@ namespace Site_MVC_FinTech.Models
                 contato.EmailContato = cont.EmailContato;
                 contato.Mensagem = cont.Mensagem;
                 contato.DataMensagem = cont.DataMensagem;
+
+                ctx.SaveChanges();
+            }
+        }
+        public static void AlterarProduto(Produto prod)
+        {
+            using (var ctx = new ClassContext())
+            {
+                Produto produto = ctx.Produto.Where(c => c.IDProduto == prod.IDProduto).First();
+
+                produto.IDProduto = prod.IDProduto;
+                produto.Titulo = prod.Titulo;
+                produto.Texto = prod.Texto;
 
                 ctx.SaveChanges();
             }

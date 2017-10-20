@@ -1,0 +1,31 @@
+﻿@model IEnumerable<Site_MVC_FinTech.Models.Produto>
+
+@{
+    ViewBag.Title = "Produto";
+}
+
+<div>
+    <h2 style="float:left; width:90%;">Produto</h2>
+    <span style="float:right; width:10%; margin-top:20px;"><a href="/Produto/Cadastrar"><input type="submit" value="Cadastrar Noticia" /></a></span>
+</div>
+
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.IDProduto)</th>
+        <th>@Html.DisplayNameFor(model => model.Titulo)</th>
+        <th>@Html.DisplayNameFor(model => model.Texto)</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelitem => item.IDProduto)</td>
+            <td>@Html.DisplayFor(modelitem => item.Titulo)</td>
+            <td>@Html.DisplayFor(modelitem => item.Texto)</td>
+            <td>
+                @Html.ActionLink("Editar", "EditarProduto", new { id = item.IDProduto }) |
+                @Html.ActionLink("Excluir", "ExcluirProduto", new { id = item.IDProduto })
+            </td>
+        </tr>
+    }
+</table>
+<br />

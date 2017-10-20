@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Site_MVC_FinTech.Models.Produto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="cliente-index">
+    <div class="cliente-index-div">
+        <h2>
+            Com você, onde e<br>
+            quando quiser.
+        </h2>
+        <br />
+        <p>
+            Experimente no smatphone ou tablet, o nosso aplicativo.
+        </p>
+        <br />
+        <p class="">
+            <img class="img-cliente-home img-responsive" src="~/Imagens/homecliente.png" />
+        </p>
+    </div>
+</div>
+
+<div class="row">
+@foreach (var item in Model)
+{
+    <div class="col-md-4">
+
+
+        @Html.HiddenFor(model => item.IDProduto)
+        <h2>@Html.DisplayFor(model => item.Titulo)</h2>
+        <p>@Html.DisplayFor(model => item.Texto)</p>
+    </div>
+}
+    @*<div class="col-md-4">
+        <p><a class="btn btn-default" href="~/Investidor/Index">Investidor &raquo;</a></p>
+
+    </div>*@

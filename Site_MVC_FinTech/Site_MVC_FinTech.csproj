@@ -202,11 +202,13 @@
     <Compile Include="Controllers\NoticiaController.cs" />
     <Compile Include="Controllers\PessoaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Repositorio\Context\ClassContext.cs" />
     <Compile Include="Models\Contato.cs" />
     <Compile Include="Models\Noticia.cs" />
@@ -217,10 +219,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\Database_Fintech.mdf" />
-    <Content Include="App_Data\Database_Fintech_log.ldf">
-      <DependentUpon>Database_Fintech.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -289,8 +287,13 @@
     <Content Include="Views\Pessoa\Login.cshtml" />
     <Content Include="Views\Pessoa\Pesquisar.cshtml" />
     <Content Include="Views\Contato\Pesquisar.cshtml" />
+    <Content Include="Views\Produto\Index.cshtml" />
+    <Content Include="Views\Produto\Listar.cshtml" />
+    <Content Include="Views\Produto\Cadastrar.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />

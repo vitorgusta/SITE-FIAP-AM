@@ -26,10 +26,10 @@
             <td>@Html.DisplayFor(modelitem => item.Idade)</td>
             <td>@Html.DisplayFor(modelitem => item.Usuario)</td>
             @*<td>@Html.DisplayFor(modelitem => item.Senha)</td>*@
-            @*<td>
+            <td>
                 @Html.ActionLink("Editar", "EditarPessoa", new { id = item.IDPessoa }) |
                 @Html.ActionLink("Excluir", "ExcluirPessoa", new { id = item.IDPessoa })
-            </td>*@
+            </td>
         </tr>
     }
 </table>
