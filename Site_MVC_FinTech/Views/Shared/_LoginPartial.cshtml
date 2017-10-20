@@ -1,17 +1,36 @@
 ﻿@using Microsoft.AspNet.Identity
 @if (Request.IsAuthenticated)
 {
-    using (Html.BeginForm("Sair", "Pessoa", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    if (FormsAuthentication.Decrypt(
+                            Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData == "Admin")
     {
-    @Html.AntiForgeryToken()
+        using (Html.BeginForm("Sair", "Pessoa", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            @Html.AntiForgeryToken()
 
-    <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right">
 
-        <li>
-            @Html.ActionLink("Olá " + User.Identity.GetUserName() + "!", "AreaRestrita", "Pessoa", routeValues: null, htmlAttributes: new { title = "Manage" })
-        </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Sair</a></li>
-    </ul>
+                <li>
+                    @Html.ActionLink("Area Restrita " + User.Identity.GetUserName() + "", "AreaRestrita", "Pessoa", routeValues: null, htmlAttributes: new { title = "Manage" })
+                </li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Sair</a></li>
+            </ul>
+        }
+    }
+    else
+    {
+        using (Html.BeginForm("Sair", "Pessoa", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <ul class="nav navbar-nav navbar-right">
+
+                <li>
+                    @Html.ActionLink("Investidor " + User.Identity.GetUserName() + "", "AreaRestrita", "Investidor", routeValues: null, htmlAttributes: new { title = "Manage" })
+                </li>
+                <li><a href="javascript:document.getElementById('logoutForm').submit()">Sair</a></li>
+            </ul>
+        }
     }
 }
 else

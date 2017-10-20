@@ -4,7 +4,10 @@
     ViewBag.Title = "Contato";
 }
 
-<h2>Listar Contatos</h2>
+<div>
+    <h2 style="float:left; width:90%;">Contatos</h2>
+    <span style="float:right; width:10%; margin-top:20px;"><a href="/Contato/Cadastrar"><input type="submit" value="Cadastrar Contato" /></a></span>
+</div>
 
 <table class="table">
     <tr>
@@ -22,12 +25,12 @@
             <td>@Html.DisplayFor(model => item.EmailContato)</td>
             <td>@Html.DisplayFor(model => item.Mensagem)</td>
             <td>@Html.DisplayFor(model => item.DataMensagem)</td>
-            @*<td>
+            <td>
                 @Html.ActionLink("Editar", "EditarContato", new { id = item.IDContato }) |
                 @Html.ActionLink("Excluir", "ExcluirContato", new { id = item.IDContato })
-            </td>*@
+            </td>
         </tr>
     }
-
 </table>
 
+<a class="btn btn-default" href="/Pessoa/AreaRestrita">Voltar</a>

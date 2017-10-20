@@ -4,33 +4,45 @@
     ViewBag.Title = "Login";
 }
 
-<h2>Login</h2>
+@{ 
 
-@using (Html.BeginForm())
-{
-    <div class="form-group-contato">
-        @Html.HiddenFor(model => model.Sta_Adm)
-        <tr>
-            <td>@Html.LabelFor(model => model.Usuario, new { @class = "col-md-2 control-label contato" })</td>
-            <td>
-                @Html.ValidationMessageFor(model => model.Usuario)
-                @Html.TextBoxFor(model => model.Usuario, new { @class = "form-control" })
-            </td>
-        </tr>
-        <tr>
-            <td>@Html.LabelFor(model => model.Senha, new { @class = "col-md-2 control-label contato" })</td>
-            <td>
-                @Html.ValidationMessageFor(model => model.Senha)
-                @Html.PasswordFor(model => model.Senha, new { @class = "form-control" })
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2" style="text-align:right"><input type="submit" value="Login" /></td>
-        </tr>
-        </div>
+    if (ViewBag.Mensagem != null)
+    {
+       <h2>@ViewBag.Mensagem</h2>
+    }
+    else
+    {
+        <h2>Login</h2>
 
-        <a class="btn btn-default" href="~/Home/Index">Voltar</a>
+        using (Html.BeginForm())
+        {
+            <div class="form-group-contato">
+                @Html.HiddenFor(model => model.Sta_Adm)
+                <tr>
+                    <td>@Html.LabelFor(model => model.Usuario, new { @class = "col-md-2 control-label contato" })</td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.Usuario)
+                        @Html.TextBoxFor(model => model.Usuario, new { @class = "form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Senha, new { @class = "col-md-2 control-label contato" })</td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.Senha)
+                        @Html.PasswordFor(model => model.Senha, new { @class = "form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align:right"><input type="submit" value="Login" /></td>
+                </tr>
+            </div>
+
+            <a class="btn btn-default" href="~/Home/Index">Voltar</a>
+        }
+
+    }
 }
+
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }

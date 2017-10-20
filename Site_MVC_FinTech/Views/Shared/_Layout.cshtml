@@ -23,11 +23,20 @@
                 <ul class="nav navbar-nav">
                     @if (Request.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink("Notícias", "Listar", "Noticia")</li>
-                        <li>@Html.ActionLink("Clientes", "Listar", "Pessoa")</li>
-                        <li>@Html.ActionLink("Contato", "Listar", "Contato")</li>
-                        <li>@Html.ActionLink("Produto", "Listar", "Produto")</li>
-                        <li>@Html.ActionLink("Investidor", "Index", "Investidor", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        if (FormsAuthentication.Decrypt(
+                            Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData == "Admin")
+                        {
+                            <li>@Html.ActionLink("Notícias", "Index", "Noticia")</li>
+                            <li>@Html.ActionLink("Contato", "Index", "Contato")</li>
+                            <li>@Html.ActionLink("Investidor", "Index", "Investidor", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Notícias", "Index", "Noticia")</li>
+                            <li>@Html.ActionLink("Contato", "Index", "Contato")</li>
+                            <li>@Html.ActionLink("Investidor", "Index", "Investidor", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+
+                        }
                     }
                     else
                     {

@@ -208,6 +208,7 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Investimento.cs" />
     <Compile Include="Models\Produto.cs" />
     <Compile Include="Models\Repositorio\Context\ClassContext.cs" />
     <Compile Include="Models\Contato.cs" />
@@ -222,6 +223,8 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="fonts\Imagens\pessoa.png" />
+    <Content Include="fonts\Imagens\teste.png" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Imagens\contato.png" />
@@ -268,8 +271,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
@@ -290,6 +291,9 @@
     <Content Include="Views\Produto\Index.cshtml" />
     <Content Include="Views\Produto\Listar.cshtml" />
     <Content Include="Views\Produto\Cadastrar.cshtml" />
+    <Content Include="Views\Investidor\Listar.cshtml" />
+    <Content Include="Views\Investidor\Cadastrar.cshtml" />
+    <Content Include="Views\Investidor\AreaRestrita.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

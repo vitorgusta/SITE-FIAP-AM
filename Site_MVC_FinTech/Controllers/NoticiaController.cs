@@ -19,14 +19,14 @@ namespace Site_MVC_FinTech.Controllers
             return View(noticia);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult Cadastrar()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Cadastrar(Noticia n, HttpPostedFileBase ImageFile)
         {
@@ -52,7 +52,7 @@ namespace Site_MVC_FinTech.Controllers
             return RedirectToAction("Listar");
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Listar()
         {
             var noticia = Repositorio.ListarNoticias();
@@ -60,7 +60,7 @@ namespace Site_MVC_FinTech.Controllers
             return View(noticia);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult ExcluirNoticia(int id)
         {
             Repositorio.ExcluirNoticia(id);
@@ -68,7 +68,7 @@ namespace Site_MVC_FinTech.Controllers
             return RedirectToAction("Listar");
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult ExcluirFotoNoticia(int id)
         {
            Noticia not =  Repositorio.ListarNoticia(id);
@@ -80,7 +80,7 @@ namespace Site_MVC_FinTech.Controllers
             return View("Cadastrar", not);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult EditarNoticia(int id)
         {
             var noticia = Repositorio.ListarNoticia(id);
@@ -88,7 +88,7 @@ namespace Site_MVC_FinTech.Controllers
             return View("Cadastrar", noticia);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult EditarNoticia(Noticia n, HttpPostedFileBase ImageFile)
         {

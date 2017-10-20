@@ -45,12 +45,21 @@ namespace Site_MVC_FinTech.Models
                 return true;
             }
         }
-
         public static bool InserirProduto(Produto prod)
         {
             using (var ctx = new ClassContext())
             {
                 ctx.Produto.Add(prod);
+                ctx.SaveChanges();
+
+                return true;
+            }
+        }
+        public static bool InserirPacote(Pacote pct)
+        {
+            using (var ctx = new ClassContext())
+            {
+                ctx.Pacote.Add(pct);
                 ctx.SaveChanges();
 
                 return true;
@@ -76,13 +85,19 @@ namespace Site_MVC_FinTech.Models
 
             return ctx.Contato;
         }
-
         public static IEnumerable<Produto> ListarProdutos()
         {
             var ctx = new ClassContext();
 
             return ctx.Produto;
         }
+        public static IEnumerable<Pacote> ListarPacote()
+        {
+            var ctx = new ClassContext();
+
+            return ctx.Pacote;
+        }
+
         /*LISTAR   */
         public static Pessoa ListarPessoa(int idpessoa)
         {
@@ -112,7 +127,15 @@ namespace Site_MVC_FinTech.Models
                 return ctx.Produto.Where(f => f.IDProduto == idproduto).First();
             }
         }
+        public static Pacote ListarPacote(int idpacote)
+        {
+            using (var ctx = new ClassContext())
+            {
+                return ctx.Pacote.Where(f => f.IDPacote == idpacote).First();
+            }
+        }
 
+        /*LOGIN  */
         public static Pessoa FindById(string usuario, string senha)
         {
             using (var ctx = new ClassContext())
@@ -163,6 +186,16 @@ namespace Site_MVC_FinTech.Models
                 Produto produto = ctx.Produto.Where(c => c.IDProduto == idproduto).First();
 
                 ctx.Produto.Remove(produto);
+                ctx.SaveChanges();
+            }
+        }
+        public static void ExcluirPacote(int idpacote)
+        {
+            using (var ctx = new ClassContext())
+            {
+                Pacote pacote = ctx.Pacote.Where(c => c.IDPacote == idpacote).First();
+
+                ctx.Pacote.Remove(pacote);
                 ctx.SaveChanges();
             }
         }
@@ -221,6 +254,20 @@ namespace Site_MVC_FinTech.Models
                 produto.IDProduto = prod.IDProduto;
                 produto.Titulo = prod.Titulo;
                 produto.Texto = prod.Texto;
+
+                ctx.SaveChanges();
+            }
+        }
+        public static void AlterarPacote(Pacote pct)
+        {
+            using (var ctx = new ClassContext())
+            {
+                Pacote pacote = ctx.Pacote.Where(c => c.IDPacote == pct.IDPacote).First();
+
+                pacote.IDPacote = pct.IDPacote;
+                pacote.Descricao = pct.Descricao;
+                pacote.Valor = pct.Valor;
+                pacote.QtdTotal = pct.QtdTotal;
 
                 ctx.SaveChanges();
             }

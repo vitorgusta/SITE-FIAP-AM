@@ -1,0 +1,52 @@
+﻿@model Site_MVC_FinTech.Models.Pacote
+@{
+    ViewBag.Title = "Pacote";
+}
+
+<div class="cliente-index">
+    <div class="cliente-index-div">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group-contato">
+                <h2>Pacotes</h2>
+                @Html.HiddenFor(model => model.IDPacote)
+                <tr>
+                    <td colspan="2">@ViewBag.Mensagem </td>
+                </tr>
+                @{
+                    if (string.IsNullOrWhiteSpace(ViewBag.Mensagem))
+                    {
+                        <tr>
+                            <td>@Html.LabelFor(model => model.Descricao, new { @class = "col-md-2 control-label contato" })</td>
+                            <td>
+                                @Html.ValidationMessageFor(model => model.Descricao)
+                                @Html.TextBoxFor(model => model.Descricao, new { @class = "form-control" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@Html.LabelFor(model => model.Valor, new { @class = "col-md-2 control-label contato" })</td>
+                            <td>
+                                @Html.ValidationMessageFor(model => model.Valor)
+                                @Html.TextBoxFor(model => model.Valor, new { @class = "form-control" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>@Html.LabelFor(model => model.QtdTotal, new { @class = "col-md-2 control-label contato" })</td>
+                            <td>
+                                @Html.ValidationMessageFor(model => model.QtdTotal)
+                                @Html.TextBoxFor(model => model.QtdTotal, new { @class = "form-control" })
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" style="text-align:right"><input type="submit" value="Cadastrar" /></td>
+                        </tr>
+                    }
+                }
+            </div>
+            <a class="btn btn-default" href="/Investidor/Listar">Voltar</a>
+                    }
+    </div>
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -35,7 +35,7 @@ namespace Site_MVC_FinTech.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Listar()
         {
             var pessoa = Repositorio.ListarPessoas();
@@ -43,7 +43,7 @@ namespace Site_MVC_FinTech.Controllers
             return View(pessoa);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult ExcluirPessoa(int id)
         {
             Repositorio.ExcluirPessoa(id);
@@ -51,7 +51,7 @@ namespace Site_MVC_FinTech.Controllers
             return RedirectToAction("Listar");
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult EditarPessoa(int id)
         {
@@ -60,7 +60,7 @@ namespace Site_MVC_FinTech.Controllers
             return View("Cadastrar", pessoa);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult EditarPessoa(Pessoa p)
         {
@@ -73,7 +73,16 @@ namespace Site_MVC_FinTech.Controllers
         [HttpGet]
         public ActionResult Login(string returnUrl)
         {
-            ViewBag.ReturnUrl = returnUrl;
+            if (returnUrl != null &&
+                Request.IsAuthenticated &&
+              FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value).UserData == "Investidor")
+            {
+                ViewBag.Mensagem = "Você Não tem permissão para acessar";
+            }
+            else
+            {
+                ViewBag.ReturnUrl = returnUrl;
+            }
             return View();
         }
 
@@ -82,38 +91,36 @@ namespace Site_MVC_FinTech.Controllers
         public ActionResult Login(Pessoa model, string returnUrl)
         {
             var user = Repositorio.FindById(model.Usuario, model.Senha);
-            
-            if (user != null && user.Sta_Adm)
+
+            if (user != null)
             {
                 FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
                                           user.Usuario,
                                           DateTime.Now,
                                           DateTime.Now.AddMinutes(30),
                                           false,
-                                          "User",
+                                          user.Sta_Adm ? "Admin" : "Investidor",
                                           FormsAuthentication.FormsCookiePath);
 
                 string encTicket = FormsAuthentication.Encrypt(ticket);
 
                 //cria o cookie
                 Response.Cookies.Add(new HttpCookie(FormsAuthentication.FormsCookieName, encTicket));
-                FormsAuthentication.SetAuthCookie(user.Usuario, false);
 
                 if (!string.IsNullOrEmpty(returnUrl))
-                {
                     return Redirect(returnUrl);
-                }
-                else
-                {
+                else if (user.Sta_Adm)
                     return RedirectToAction("AreaRestrita", "Pessoa");
-                }
+                else
+                    return RedirectToAction("AreaRestrita", "Investidor");
             }
 
             this.ModelState.AddModelError("Usuario", "Login ou senha incorretos");
+
             return View(model);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult AreaRestrita()
         {
             return View();
@@ -121,7 +128,7 @@ namespace Site_MVC_FinTech.Controllers
 
         //PESQUISA
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult Pesquisar()
         {
@@ -133,7 +140,7 @@ namespace Site_MVC_FinTech.Controllers
             return View(pessoa);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Pesquisar(string texto, string combo)
         {
@@ -151,8 +158,8 @@ namespace Site_MVC_FinTech.Controllers
         public ActionResult Sair()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Produto");
         }
-        
+
     }
 }

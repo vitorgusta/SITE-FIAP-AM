@@ -17,14 +17,14 @@ namespace Site_MVC_FinTech.Controllers
             return View(produto);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult Cadastrar()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Cadastrar(Produto pd)
         {
@@ -36,7 +36,7 @@ namespace Site_MVC_FinTech.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Listar()
         {
             var produto = Repositorio.ListarProdutos();
@@ -44,7 +44,7 @@ namespace Site_MVC_FinTech.Controllers
             return View(produto);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult ExcluirProduto(int id)
         {
             Repositorio.ExcluirProduto(id);
@@ -52,7 +52,7 @@ namespace Site_MVC_FinTech.Controllers
             return RedirectToAction("Listar");
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult EditarProduto(int id)
         {
@@ -61,7 +61,7 @@ namespace Site_MVC_FinTech.Controllers
             return View("Cadastrar", produto);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult EditarProduto(Produto pd)
         {

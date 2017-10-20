@@ -33,7 +33,7 @@ namespace Site_MVC_FinTech.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult Listar()
         {
             var conntato = Repositorio.ListarContatos();
@@ -41,7 +41,7 @@ namespace Site_MVC_FinTech.Controllers
             return View(conntato);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult ExcluirContato(int id)
         {
             Repositorio.ExcluirContato(id);
@@ -49,7 +49,7 @@ namespace Site_MVC_FinTech.Controllers
             return RedirectToAction("Listar");
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         public ActionResult EditarContato(int id)
         {
             var contato = Repositorio.ListarContato(id);
@@ -57,7 +57,7 @@ namespace Site_MVC_FinTech.Controllers
             return View("Cadastrar", contato);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult EditarContato(Contato c)
         {
@@ -68,7 +68,7 @@ namespace Site_MVC_FinTech.Controllers
 
         //PESQUISA
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public ActionResult Pesquisar()
         {
@@ -80,7 +80,7 @@ namespace Site_MVC_FinTech.Controllers
             return View(contato);
         }
 
-        [Authorize]
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public ActionResult Pesquisar(string texto, string combo)
         {
