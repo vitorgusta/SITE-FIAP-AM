@@ -7,12 +7,28 @@ using System.Web.Mvc;
 
 namespace Site_MVC_FinTech.Controllers
 {
-    public class ProdutoController : Controller
+    public class ProdutoController : DefaultController
     {
         // GET: Produto
         public ActionResult Index()
         {
             var produto = Repositorio.ListarProdutos();
+            var pacotes = Repositorio.ListarPacotes();
+            var investidores = Repositorio.Listarinvestidores();
+
+            foreach (var pacote in pacotes)
+            {
+                int qtdPct = 0;
+
+                foreach (var inv in investidores.Where(iv => iv.pacote.IDPacote == pacote.IDPacote))
+                {
+                    qtdPct += inv.Quantidade;
+                }
+                
+                pacote.QtdDisponivel = pacote.QtdTotal - qtdPct;
+            }
+
+            ViewBag.Pacotes = pacotes;
 
             return View(produto);
         }

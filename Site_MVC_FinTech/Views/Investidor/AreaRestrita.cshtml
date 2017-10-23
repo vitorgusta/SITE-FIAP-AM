@@ -4,6 +4,58 @@
     ViewBag.Title = "AreaRestrita";
 }
 
-<h2>Pesquisar Investimento</h2>
+<div>
+    <h2 style="float:left; width:90%;">Seu Investimento</h2>
+</div>
 
-<a class="btn btn-default" href="/Investidor/AreaRestrita">Voltar</a>
+<div>
+    <div>
+        @using (Html.BeginForm())
+        {
+            <input type="text" name="texto" id="texto" placeholder="Digite o pacote" />
+            <input type="submit" value="Filtrar" />
+
+            <select name="combo">
+                <option value="todos">Todos</option>
+                <option value="pacotes">Pacotes</option>
+            </select>
+        }
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Nome</th>
+            <th>CPF</th>
+            <th>Pacote</th>
+            <th>Valor</th>
+            <th>Quantidade</th>
+            <th>Total</th>
+        </tr>
+        @{
+            if (Model != null && ((List<Site_MVC_FinTech.Models.Investidor>)Model).Count > 0)
+            {
+
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.pessoa.IDPessoa</td>
+                        <td>@item.pessoa.NomeCompleto</td>
+                        <td>@item.pessoa.Cpf</td>
+                        <td>@item.pacote.Descricao</td>
+                        <td>@item.pacote.Valor</td>
+                        <td>@item.Quantidade</td>
+                        <td>@item.Total</td>
+                    </tr>
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="7">@ViewBag.Mensagem</td>
+                </tr>
+            }
+        }
+    </table>
+</div>
+</table>

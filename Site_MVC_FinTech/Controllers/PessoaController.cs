@@ -95,7 +95,7 @@ namespace Site_MVC_FinTech.Controllers
             if (user != null)
             {
                 FormsAuthenticationTicket ticket = new FormsAuthenticationTicket(1,
-                                          user.Usuario,
+                                          user.IDPessoa.ToString(),
                                           DateTime.Now,
                                           DateTime.Now.AddMinutes(30),
                                           false,

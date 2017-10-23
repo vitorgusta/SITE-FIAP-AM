@@ -32,8 +32,25 @@
             <p>@Html.DisplayFor(model => item.Texto)</p>
         </div>
     }
-</div>
-@*<div class="col-md-4">
-        <p><a class="btn btn-default" href="~/Investidor/Index">Investidor &raquo;</a></p>
 
-    </div>*@
+    @foreach (var pacote in (IEnumerable<Site_MVC_FinTech.Models.Pacote>)ViewBag.Pacotes)
+    {
+        <div class="col-md-4">
+            <h2>@Html.Label(pacote.Descricao)</h2>
+            <p>@Html.Label(pacote.Valor.ToString("C2"))</p>
+            <p>
+                @Html.Label(pacote.QtdTotal.ToString("")) |
+            @Html.Label(pacote.QtdDisponivel.ToString(""))
+        </p>
+
+        @if (pacote.QtdDisponivel > 0)
+        {
+            <p>@Html.ActionLink("Investir", "ConfirmaDados", "Investidor", new { id = pacote.IDPacote }, new { @class = "btn btn-default" })</p>
+        }
+        else
+        {
+            <p>Esgotado!</p>
+        }
+    </div>
+    }
+</div>

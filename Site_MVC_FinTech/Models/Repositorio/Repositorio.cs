@@ -65,6 +65,35 @@ namespace Site_MVC_FinTech.Models
                 return true;
             }
         }
+        //public static bool InseriInvestimento(Investidor i)
+        //{
+        //    using (var ctx = new ClassContext())
+        //    {
+        //        List<Investidor> investidor = ctx.Investidor.Where(iv => i.IDInvestidor == i.IDInvestidor).ToList();
+
+        //        if (investidor.Count == 0)
+        //        {
+        //            ctx.Investidor.Add(i);
+        //            ctx.SaveChanges();
+
+        //            return true;
+        //        }
+
+        //        return false;
+        //    }
+        //}
+        public static bool InseriInvestidor(Investidor i)
+        {
+            using (var ctx = new ClassContext())
+            {
+                ctx.Pessoa.Attach(i.pessoa);
+                ctx.Pacote.Attach(i.pacote);
+                ctx.Investidor.Add(i);
+                ctx.SaveChanges();
+
+                return true;
+            }
+        }
 
         /*LISTAR TODOS   */
         public static IEnumerable<Pessoa> ListarPessoas()
@@ -83,19 +112,21 @@ namespace Site_MVC_FinTech.Models
         {
             var ctx = new ClassContext();
 
-            return ctx.Contato;
+            return ctx.Contato.ToList();
         }
         public static IEnumerable<Produto> ListarProdutos()
         {
-            var ctx = new ClassContext();
-
-            return ctx.Produto;
+            using (var ctx = new ClassContext())
+            {
+                return ctx.Produto.ToList();
+            }
         }
-        public static IEnumerable<Pacote> ListarPacote()
+        public static IEnumerable<Pacote> ListarPacotes()
         {
-            var ctx = new ClassContext();
-
-            return ctx.Pacote;
+            using (var ctx = new ClassContext())
+            {
+                return ctx.Pacote.ToList();
+            }
         }
 
         /*LISTAR   */
@@ -106,6 +137,7 @@ namespace Site_MVC_FinTech.Models
                 return ctx.Pessoa.Where(f => f.IDPessoa == idpessoa).First();
             }
         }
+
         public static Noticia ListarNoticia(int idnoticia)
         {
             using (var ctx = new ClassContext())
@@ -132,6 +164,16 @@ namespace Site_MVC_FinTech.Models
             using (var ctx = new ClassContext())
             {
                 return ctx.Pacote.Where(f => f.IDPacote == idpacote).First();
+            }
+        }
+        public static IEnumerable<Investidor> Listarinvestidores()
+        {
+            using (var ctx = new ClassContext())
+            {
+                return ctx.Investidor
+                    .Include(p => p.pessoa)
+                    .Include(p => p.pacote)
+                    .ToList();
             }
         }
 
@@ -357,6 +399,41 @@ namespace Site_MVC_FinTech.Models
                 }
 
                 return contato;
+
+            }
+        }
+
+        /*FILTRAR   */
+        public static IEnumerable<Investidor> FiltrarPacote(int UserId)
+        {
+            return FiltrarPacote(null, null, UserId);
+        }
+
+        public static IEnumerable<Investidor> FiltrarPacote(string texto, string combo, int UserId)
+        {
+
+            using (var ctx = new ClassContext())
+            {
+                List<Investidor> investidor = null;
+                switch (combo)
+                {
+                    case "pacotes":
+                        if (texto != "")
+                            investidor = ctx.Investidor.Where(f => f.pacote.Descricao.Contains(texto)).OrderBy(x => x.pacote.Descricao)
+                                  .Include(p => p.pessoa)
+                                .Include(p => p.pacote)
+                                .ToList();
+                        break;
+
+                    default:
+                        investidor = ctx.Investidor.OrderBy(x => x.pessoa.IDPessoa)
+                             .Include(p => p.pessoa)
+                            .Include(p => p.pacote)
+                            .ToList();
+                        break;
+                }
+
+                return investidor;
 
             }
         }

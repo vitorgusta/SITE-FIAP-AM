@@ -3,5 +3,20 @@
     ViewBag.Title = "Index";
 }
 
-<h2>NAC INVESTIDOR</h2>
+<h2>Investimento</h2>
 
+@*<div class="row">
+    @foreach (var pacote in (IEnumerable<Site_MVC_FinTech.Models.Pacote>)ViewBag.Pacotes)
+    {
+        <div class="col-md-4">
+            <h2>@Html.Label(pacote.Descricao)</h2>
+            <p>@Html.Label(pacote.Valor.ToString("C2"))</p>
+            <p>
+                @Html.Label(pacote.QtdTotal.ToString("")) |
+            @Html.Label(pacote.QtdDisponivel.ToString(""))
+        </p>
+
+        <p>@Html.ActionLink("Investir", "AreaRestrita", "Investidor", new { id = pacote.IDPacote }, new { @class = "btn btn-default" })</p>
+    </div>
+    }
+</div>*@

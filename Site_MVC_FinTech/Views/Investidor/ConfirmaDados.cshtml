@@ -1,0 +1,72 @@
+﻿@model Site_MVC_FinTech.Models.Investidor
+
+@{
+    ViewBag.Title = "ConfirmaDados";
+}
+
+<div class="cliente-index">
+    <div class="cliente-index-div">
+        @using (Html.BeginForm())
+        {
+            <div class="form-group-contato">
+                <h2>Confirme seus Dados</h2>
+                <tr>
+                    <td colspan="2">@ViewBag.Mensagem </td>
+                </tr>
+                @Html.HiddenFor(model => model.pacote.IDPacote)
+                @Html.HiddenFor(model => model.pacote.Descricao)
+                @Html.HiddenFor(model => model.pacote.Valor)
+                @Html.HiddenFor(model => model.pacote.QtdTotal)
+                @Html.HiddenFor(model => model.pacote.QtdDisponivel)
+
+                @Html.HiddenFor(model => model.pessoa.IDPessoa)
+                @Html.HiddenFor(model => model.pessoa.NomeCompleto)
+                @Html.HiddenFor(model => model.pessoa.Cpf)
+                @Html.HiddenFor(model => model.pessoa.Email)
+                @Html.HiddenFor(model => model.pessoa.Idade)
+                @Html.HiddenFor(model => model.pessoa.Usuario)
+                @Html.HiddenFor(model => model.pessoa.Senha)
+                @Html.HiddenFor(model => model.pessoa.Sta_Adm)
+                <tr>
+                    <td>@Html.LabelFor(model => model.pessoa.NomeCompleto, new { @class = "col-md-2 control-label contato" })</td>
+                    <td>@Html.Label(Model.pessoa.NomeCompleto, new { @class = "form-control" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.pessoa.Cpf, new { @class = "col-md-2 control-label contato" })</td>
+                    <td>@Html.Label(Model.pessoa.Cpf.ToString(), new { @class = "form-control" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.CartaoCredito, new { @class = "col-md-2 control-label contato" })</td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.CartaoCredito)
+                        @Html.TextBoxFor(model => model.CartaoCredito, new { @class = "form-control" })
+                    </td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.pacote.Descricao, new { @class = "col-md-2 control-label contato" })</td>
+                    <td>@Html.Label(Model.pacote.Descricao, new { @class = "form-control" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.pacote.Valor, new { @class = "col-md-2 control-label contato" })</td>
+                    <td>@Html.Label(Model.pacote.Valor.ToString(), new { @class = "form-control" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.pacote.QtdDisponivel, new { @class = "col-md-2 control-label contato" })</td>
+                    <td>@Html.Label(Model.pacote.QtdDisponivel.ToString(), new { @class = "form-control" })</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(model => model.Quantidade, new { @class = "col-md-2 control-label contato" })</td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.Quantidade)
+                        @Html.TextBoxFor(model => model.Quantidade, new { @class = "form-control" })
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2" style="text-align:right"><input type="submit" value="Comprar" /></td>
+                </tr>
+
+            </div>
+        }
+    </div>
+</div>
