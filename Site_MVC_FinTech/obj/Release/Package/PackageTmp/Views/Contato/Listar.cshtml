@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Site_MVC_FinTech.Models.Contato>
+
+@{
+    ViewBag.Title = "Contato";
+}
+
+<div>
+    <h2 style="float:left; width:90%;">Contatos</h2>
+    <span style="float:right; width:10%; margin-top:20px;"><a href="/Contato/Cadastrar"><input type="submit" value="Cadastrar Contato" /></a></span>
+</div>
+
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.IDContato)</th>
+        <th>@Html.DisplayNameFor(model => model.NomeContato)</th>
+        <th>@Html.DisplayNameFor(model => model.EmailContato)</th>
+        <th>@Html.DisplayNameFor(model => model.Mensagem)</th>
+        <th>@Html.DisplayNameFor(model => model.DataMensagem)</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@Html.DisplayFor(model => item.IDContato)</td>
+            <td>@Html.DisplayFor(model => item.NomeContato)</td>
+            <td>@Html.DisplayFor(model => item.EmailContato)</td>
+            <td>@Html.DisplayFor(model => item.Mensagem)</td>
+            <td>@Html.DisplayFor(model => item.DataMensagem)</td>
+            <td>
+                @Html.ActionLink("Editar", "EditarContato", new { id = item.IDContato }) |
+                @Html.ActionLink("Excluir", "ExcluirContato", new { id = item.IDContato })
+            </td>
+        </tr>
+    }
+</table>
+
+<a class="btn btn-default" href="/Pessoa/AreaRestrita">Voltar</a>

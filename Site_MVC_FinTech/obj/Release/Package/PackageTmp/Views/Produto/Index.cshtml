@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Site_MVC_FinTech.Models.Produto>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="cliente-index">
+    <div class="cliente-index-div">
+        <h2>
+            Com você, onde e<br>
+            quando quiser.
+        </h2>
+        <br />
+        <p>
+            Experimente no smatphone ou tablet, o nosso aplicativo.
+        </p>
+        <br />
+        <p class="">
+            <img class="img-cliente-home img-responsive" src="~/Imagens/homecliente.png" />
+        </p>
+    </div>
+</div>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="col-md-4">
+
+
+            @Html.HiddenFor(model => item.IDProduto)
+            <h2>@Html.DisplayFor(model => item.Titulo)</h2>
+            <p>@Html.DisplayFor(model => item.Texto)</p>
+        </div>
+    }
+
+    @foreach (var pacote in (IEnumerable<Site_MVC_FinTech.Models.Pacote>)ViewBag.Pacotes)
+    {
+        <div class="col-md-4">
+            <h2>@Html.Label(pacote.Descricao)</h2>
+            <p>@Html.Label(pacote.Valor.ToString("C2"))</p>
+            <p>
+                @Html.Label(pacote.QtdTotal.ToString("")) |
+            @Html.Label(pacote.QtdDisponivel.ToString(""))
+        </p>
+
+        @if (pacote.QtdDisponivel > 0)
+        {
+            <p>@Html.ActionLink("Investir", "ConfirmaDados", "Investidor", new { id = pacote.IDPacote }, new { @class = "btn btn-default" })</p>
+        }
+        else
+        {
+            <p>Esgotado!</p>
+        }
+    </div>
+    }
+</div>

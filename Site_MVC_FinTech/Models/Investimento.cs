@@ -11,8 +11,10 @@ namespace Site_MVC_FinTech.Models
         [Key]
         public int IDInvestidor { get; set; }
         [Required]
+        [Range(1, 9999999999999999, ErrorMessage = "Digite o numero correto!")]
         public long CartaoCredito { get; set; }
         [Required]
+        [Range(1, 51, ErrorMessage = "Digite a quantidade correta!")]
         public int Quantidade { get; set; }
         public decimal Total { get; set; }
         public Pessoa pessoa { get; set; }

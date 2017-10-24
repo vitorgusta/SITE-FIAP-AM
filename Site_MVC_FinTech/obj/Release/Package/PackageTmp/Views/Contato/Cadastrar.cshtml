@@ -1,0 +1,73 @@
+﻿@model Site_MVC_FinTech.Models.Contato
+@{
+    ViewBag.Title = "Contato";
+}
+
+<div class="cliente-index">
+    <div class="cliente-index-div">
+            @using (Html.BeginForm())
+            {
+                <div class="form-group-contato">
+                    <h2>Fale Conosco</h2>
+                    @Html.HiddenFor(model => model.IDContato)
+                    <tr>
+                        <td colspan="2">@ViewBag.Mensagem </td>
+                    </tr>
+                    @{
+                        if (string.IsNullOrWhiteSpace(ViewBag.Mensagem))
+                        {
+                            <tr>
+                                <td>@Html.LabelFor(model => model.NomeContato, new { @class = "col-md-2 control-label contato" })</td>
+                                <td>
+                                    @Html.ValidationMessageFor(model => model.NomeContato)
+                                    @Html.TextBoxFor(model => model.NomeContato, new { @class = "form-control" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>@Html.LabelFor(model => model.EmailContato, new { @class = "col-md-2 control-label contato" })</td>
+                                <td>
+                                    @Html.ValidationMessageFor(model => model.EmailContato)
+                                    @Html.TextBoxFor(model => model.EmailContato, new { @class = "form-control" })
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>@Html.LabelFor(model => model.Mensagem, new { @class = "col-md-2 control-label contato" })</td>
+                                <td>
+                                    @Html.ValidationMessageFor(model => model.Mensagem)
+                                    @Html.TextBoxFor(model => model.Mensagem, new { @class = "form-control" })
+                                </td>
+                            </tr>
+                            <tr>
+                                @Html.HiddenFor(model => model.DataMensagem)
+                                @*<td>@Html.LabelFor(model => model.DataMensagem, new { @class = "col-md-2 control-label contato" })</td>
+                                <td>
+                                    @Html.ValidationMessageFor(model => model.DataMensagem)
+                                    @Html.TextBoxFor(model => model.DataMensagem, new { @class = "form-control" })
+                                </td>*@
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align:right"><input type="submit" value="Enviar Mensagem" /></td>
+                            </tr>
+                        }
+                    }
+
+                </div>
+                        }
+            @*<div class="institucional">
+                <h3>IsaInvest</h3>
+                <p>
+                    <img class="alignnone size-full wp-image-102" src="https://www.cdn.erasystems.com.br/wp-content/uploads/2017/06/contato.png" alt="contato" width="230" height="230" srcset="https://www.erasystems.com.br/wp-content/uploads/2017/06/contato.png 230w, https://www.erasystems.com.br/wp-content/uploads/2017/06/contato-150x150.png 150w" sizes="(max-width: 230px) 100vw, 230px"><br>
+                    Telefone: (11) 3385-8010<br>
+                    Fiap: 3SIS<br>
+                    Av. Lins de Vanconcelos, 1222 - Aclimação
+                </p>
+            </div>
+        </div>*@
+
+        <a class="btn btn-default" href="/Contato">Voltar para Contato</a>
+    </div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
